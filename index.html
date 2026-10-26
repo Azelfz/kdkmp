@@ -19,7 +19,6 @@
       body { background-color: #ffffff; }
       .print-box { box-shadow: none !important; border: none !important; padding: 0 !important; }
     }
-    /* Custom scrollbar */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #f1f5f9; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
@@ -113,8 +112,8 @@
           <button type="button" id="btnGoToJurnal" class="text-xs bg-slate-800 hover:bg-slate-700 text-white font-semibold px-3 py-2 rounded-lg transition">
             Input Jurnal Harian →
           </button>
-          <button type="button" id="btnResetDemoData" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium px-3 py-2 rounded-lg border border-slate-300 transition">
-            Reset Data Awal
+          <button type="button" id="btnResetDemoData" class="text-xs bg-rose-600 hover:bg-rose-700 text-white font-bold px-3.5 py-2 rounded-lg border border-rose-500 shadow-sm transition">
+            🔄 Reset ke Awal (Semua Rp 0)
           </button>
         </div>
       </div>
@@ -190,11 +189,11 @@
 
     <!-- ==================== TAB 2: STOK & BARANG PERSEDIAAN ==================== -->
     <section id="tab-persediaan" class="tab-panel hidden space-y-5">
-      <!-- Top Action & Reconciliation Bar -->
+      <!-- Top Action Bar -->
       <div class="bg-white rounded-xl p-4 border border-slate-200 shadow-sm flex flex-wrap items-center justify-between gap-4">
         <div>
           <h2 class="text-base font-bold text-slate-800">Manajemen & Cek Barang Persediaan (Otomatis Masuk / Keluar)</h2>
-          <p class="text-xs text-slate-500 mt-0.5">Stok Akhir dihitung otomatis dari <strong>Stok Awal + Total Masuk (Pembelian/Debit 1.1.4) − Total Keluar (Penjualan/Pemakaian/Kredit 1.1.4)</strong>.</p>
+          <p class="text-xs text-slate-500 mt-0.5">Stok Akhir dihitung otomatis dari <strong>Stok Awal + Total Masuk − Total Keluar</strong>.</p>
         </div>
         <div class="flex flex-wrap items-center gap-2">
           <button type="button" id="btnOpenTransPersediaan2" class="bg-amber-400 hover:bg-amber-300 text-slate-900 font-bold text-xs px-3.5 py-2 rounded-lg shadow-sm transition">
@@ -243,7 +242,7 @@
               <option value="MENIPIS">Stok Menipis / Habis</option>
             </select>
           </div>
-          <span class="text-xs text-slate-500">Klik <strong>"Kartu Stok"</strong> untuk melihat riwayat detail transaksi masuk & keluar per barang.</span>
+          <span class="text-xs text-slate-500">Kelola master persediaan melalui tombol <strong>Edit</strong> atau <strong>Hapus</strong>.</span>
         </div>
 
         <div class="overflow-x-auto">
@@ -271,7 +270,7 @@
         </div>
       </div>
 
-      <!-- Riwayat Mutasi Masuk/Keluar Terakhir -->
+      <!-- Log Mutasi -->
       <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
         <div class="p-4 border-b border-slate-200 flex flex-wrap items-center justify-between gap-2 bg-slate-50">
           <div>
@@ -304,7 +303,6 @@
 
     <!-- ==================== TAB 3: JURNAL HARIAN ==================== -->
     <section id="tab-jurnal" class="tab-panel hidden space-y-5">
-      <!-- Form Input Jurnal Harian -->
       <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm no-print">
         <div class="flex flex-wrap items-center justify-between gap-2 pb-3 mb-4 border-b border-slate-200">
           <div>
@@ -329,7 +327,7 @@
             </div>
             <div>
               <label class="block text-xs font-semibold text-slate-700 mb-1">Nomor Bukti</label>
-              <input type="text" id="jDocNo" required placeholder="Contoh: 006/01/KDMP-PM/2026" class="w-full text-xs border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500" value="007/01/KDMP-PM/2026" />
+              <input type="text" id="jDocNo" required placeholder="Contoh: 001/01/KDMP-PM/2026" class="w-full text-xs border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500" value="001/01/KDMP-PM/2026" />
             </div>
             <div>
               <label class="block text-xs font-semibold text-slate-700 mb-1">Keterangan Transaksi</label>
@@ -337,7 +335,6 @@
             </div>
           </div>
 
-          <!-- Dynamic Journal Lines -->
           <div class="overflow-x-auto border border-slate-200 rounded-lg">
             <table class="w-full text-left border-collapse text-xs">
               <thead>
@@ -376,7 +373,7 @@
         </form>
       </div>
 
-      <!-- Tabel Buku Jurnal Harian -->
+      <!-- Tabel Jurnal Harian -->
       <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden print-box">
         <div class="p-4 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3 bg-slate-50">
           <div>
@@ -384,7 +381,7 @@
               <h3 class="text-sm font-bold text-slate-800">BUKU JURNAL HARIAN — <span class="coop-name-span">KDMP Banyurojo</span></h3>
               <span id="journalTableBalanceBadge" class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800">Balance</span>
             </div>
-            <p class="text-xs text-slate-500">Format identik dengan Sheet <code>Jurnal</code> pada aplikasi Excel Koperasi disertai kolom Barang Persediaan & Qty.</p>
+            <p class="text-xs text-slate-500">Format identik dengan Sheet <code>Jurnal</code> pada aplikasi Excel Koperasi.</p>
           </div>
           <div class="flex flex-wrap items-center gap-2 no-print">
             <select id="filterJournalMonth" class="text-xs border border-slate-300 rounded-lg px-3 py-1.5 bg-white">
@@ -511,10 +508,9 @@
       </div>
     </section>
 
-    <!-- ==================== TAB 5: LAPORAN KEUANGAN (EXCEL FORMAT) ==================== -->
+    <!-- ==================== TAB 5: LAPORAN KEUANGAN ==================== -->
     <section id="tab-laporan" class="tab-panel hidden space-y-5">
       <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden print-box">
-        <!-- Sub-navigation Laporan -->
         <div class="flex flex-wrap items-center justify-between border-b border-slate-200 bg-slate-50 px-4 pt-2 gap-2 no-print">
           <div class="flex flex-wrap gap-1">
             <button type="button" data-reptab="phu" class="rep-subtab subtab-btn active px-4 py-2.5 text-xs font-semibold rounded-t-lg transition">
@@ -549,7 +545,7 @@
           </div>
         </div>
 
-        <!-- 1. PANEL PHU (HASIL USAHA) -->
+        <!-- 1. PANEL PHU -->
         <div id="rep-panel-phu" class="p-6 space-y-4">
           <div class="text-center border-b border-slate-200 pb-4">
             <p class="text-xs font-bold text-red-700 uppercase tracking-widest coop-name-span">KDMP Banyurojo</p>
@@ -584,7 +580,7 @@
           </div>
         </div>
 
-        <!-- 2. PANEL LPE (LAPORAN PERUBAHAN EKUITAS) -->
+        <!-- 2. PANEL LPE -->
         <div id="rep-panel-lpe" class="p-6 space-y-4 hidden">
           <div class="text-center border-b border-slate-200 pb-4">
             <p class="text-xs font-bold text-red-700 uppercase tracking-widest coop-name-span">KDMP Banyurojo</p>
@@ -708,7 +704,7 @@
       <div class="bg-white rounded-xl p-4 border border-slate-200 shadow-sm flex flex-wrap items-center justify-between gap-4">
         <div>
           <h2 class="text-base font-bold text-slate-800">Daftar Kode dan Nama Akun (Chart of Accounts - 151 Akun Standar Koperasi)</h2>
-          <p class="text-xs text-slate-500">Berdasarkan struktur akun standar PPAK Koperasi Desa Merah Putih. Anda juga dapat menambahkan sub-akun baru.</p>
+          <p class="text-xs text-slate-500">Anda dapat mengubah nama akun atau menghapus akun yang belum digunakan pada jurnal.</p>
         </div>
         <div class="flex flex-wrap items-center gap-2">
           <input type="text" id="searchCoaInput" placeholder="Cari kode atau nama akun..." class="text-xs border border-slate-300 rounded-lg px-3 py-2 w-60" />
@@ -758,6 +754,7 @@
                 <th class="py-2.5 px-3 w-28 text-center">Saldo Normal</th>
                 <th class="py-2.5 px-3 w-28 text-center">Level 3</th>
                 <th class="py-2.5 px-3 text-right w-44">Saldo Saat Ini (Rp)</th>
+                <th class="py-2.5 px-3 text-center w-28">Aksi</th>
               </tr>
             </thead>
             <tbody id="coaTableBody" class="divide-y divide-slate-200"></tbody>
@@ -766,7 +763,7 @@
       </div>
     </section>
 
-    <!-- ==================== TAB 7: IDENTITAS KOPERASI (HOME) ==================== -->
+    <!-- ==================== TAB 7: IDENTITAS KOPERASI ==================== -->
     <section id="tab-identitas" class="tab-panel hidden space-y-5">
       <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm max-w-3xl mx-auto">
         <div class="border-b border-slate-200 pb-4 mb-5">
@@ -834,7 +831,7 @@
 
   </main>
 
-  <!-- ==================== MODAL 1: TRANSAKSI CEPAT PERSEDIAAN (MASUK / KELUAR OTOMATIS) ==================== -->
+  <!-- ==================== MODAL 1: TRANSAKSI CEPAT PERSEDIAAN ==================== -->
   <div id="modalQuickTrans" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4 no-print">
     <div class="bg-white rounded-2xl max-w-xl w-full shadow-2xl border border-slate-200 overflow-hidden">
       <div class="bg-gradient-to-r from-red-800 to-rose-700 text-white px-5 py-4 flex items-center justify-between">
@@ -863,7 +860,7 @@
           </div>
           <div>
             <label class="block font-semibold text-slate-700 mb-1">Nomor Bukti</label>
-            <input type="text" id="qtDocNo" required class="w-full border border-slate-300 rounded-lg px-3 py-2" value="007/01/KDMP-PM/2026" />
+            <input type="text" id="qtDocNo" required class="w-full border border-slate-300 rounded-lg px-3 py-2" value="001/01/KDMP-PM/2026" />
           </div>
 
           <div class="sm:col-span-2">
@@ -898,7 +895,6 @@
           </div>
         </div>
 
-        <!-- Preview Jurnal Otomatis -->
         <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 space-y-1.5">
           <div class="flex items-center justify-between">
             <span class="font-bold text-slate-700">Pratinjau Jurnal Otomatis & Dampaknya ke Stok:</span>
@@ -915,7 +911,7 @@
     </div>
   </div>
 
-  <!-- ==================== MODAL 2: TAMBAH / EDIT MASTER BARANG PERSEDIAAN ==================== -->
+  <!-- ==================== MODAL 2: MASTER BARANG PERSEDIAAN ==================== -->
   <div id="modalItemMaster" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4 no-print">
     <div class="bg-white rounded-2xl max-w-lg w-full shadow-2xl border border-slate-200 overflow-hidden">
       <div class="bg-slate-800 text-white px-5 py-4 flex items-center justify-between">
@@ -971,7 +967,7 @@
     </div>
   </div>
 
-  <!-- ==================== MODAL 3: KARTU STOK DETAIL PER BARANG ==================== -->
+  <!-- ==================== MODAL 3: KARTU STOK DETAIL ==================== -->
   <div id="modalStockCard" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4 no-print">
     <div class="bg-white rounded-2xl max-w-3xl w-full shadow-2xl border border-slate-200 overflow-hidden">
       <div class="bg-slate-800 text-white px-5 py-4 flex items-center justify-between">
@@ -1004,7 +1000,7 @@
   </div>
 
   <script>
-    // ==================== DATA AWAL: COA 151 AKUN DARI EXCEL ====================
+    // DATA COA & KOMPONEN
     const INITIAL_COA = [{"no": 1, "full": "1.1.1.01 Kas Tunai", "code": "1.1.1.01", "name": "Kas Tunai", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.1"}, {"no": 2, "full": "1.1.1.02 Kas di Bank BRI", "code": "1.1.1.02", "name": "Kas di Bank BRI", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.1"}, {"no": 3, "full": "1.1.1.03 Kas di Bank Mandiri", "code": "1.1.1.03", "name": "Kas di Bank Mandiri", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.1"}, {"no": 4, "full": "1.1.1.04 Kas di Bank BNI", "code": "1.1.1.04", "name": "Kas di Bank BNI", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.1"}, {"no": 5, "full": "1.1.1.05 Kas di Bank BTN", "code": "1.1.1.05", "name": "Kas di Bank BTN", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.1"}, {"no": 6, "full": "1.1.1.06 Kas di Bank BPD", "code": "1.1.1.06", "name": "Kas di Bank BPD", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.1"}, {"no": 7, "full": "1.1.1.07 Kas di Bank BSI", "code": "1.1.1.07", "name": "Kas di Bank BSI", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.1"}, {"no": 8, "full": "1.1.1.10 Kas Kecil (Petty Cash)", "code": "1.1.1.10", "name": "Kas Kecil (Petty Cash)", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.1"}, {"no": 9, "full": "1.1.1.11 Deposito (< 3 bulan)", "code": "1.1.1.11", "name": "Deposito (< 3 bulan)", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.1"}, {"no": 10, "full": "1.1.2.01 Piutang Usaha", "code": "1.1.2.01", "name": "Piutang Usaha", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.2"}, {"no": 11, "full": "1.1.2.02 Piutang kepada Pegawai", "code": "1.1.2.02", "name": "Piutang kepada Pegawai", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.2"}, {"no": 12, "full": "1.1.2.03 Piutang Simpanan Pokok Anggota", "code": "1.1.2.03", "name": "Piutang Simpanan Pokok Anggota", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.2"}, {"no": 13, "full": "1.1.2.04 Piutang Simpanan Wajib Anggota", "code": "1.1.2.04", "name": "Piutang Simpanan Wajib Anggota", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.2"}, {"no": 14, "full": "1.1.2.05 Piutang Anggota", "code": "1.1.2.05", "name": "Piutang Anggota", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.2"}, {"no": 15, "full": "1.1.3.01 Penyisihan Piutang Usaha Tak Tertagih", "code": "1.1.3.01", "name": "Penyisihan Piutang Usaha Tak Tertagih", "normal": "Kredit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.3"}, {"no": 16, "full": "1.1.3.02 Penyisihan Piutang kepada Pegawai Tak Tertagih", "code": "1.1.3.02", "name": "Penyisihan Piutang kepada Pegawai Tak Tertagih", "normal": "Kredit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.3"}, {"no": 17, "full": "1.1.3.03 Penyisihan Piutang Simpanan Pokok Anggota Tak Tertagih", "code": "1.1.3.03", "name": "Penyisihan Piutang Simpanan Pokok Anggota Tak Tertagih", "normal": "Kredit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.3"}, {"no": 18, "full": "1.1.3.04 Penyisihan Piutang Simpanan Wajib Anggota Tak Tertagih", "code": "1.1.3.04", "name": "Penyisihan Piutang Simpanan Wajib Anggota Tak Tertagih", "normal": "Kredit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.3"}, {"no": 19, "full": "1.1.4.01 Persediaan Barang Dagangan", "code": "1.1.4.01", "name": "Persediaan Barang Dagangan", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.4"}, {"no": 20, "full": "1.1.4.02 Persediaan ATK", "code": "1.1.4.02", "name": "Persediaan ATK", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.4"}, {"no": 21, "full": "1.1.4.03 Perlengkapan", "code": "1.1.4.03", "name": "Perlengkapan", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.4"}, {"no": 22, "full": "1.1.5.01 Sewa Dibayar Dimuka", "code": "1.1.5.01", "name": "Sewa Dibayar Dimuka", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.5"}, {"no": 23, "full": "1.1.5.02 Asuransi Dibayar Dimuka", "code": "1.1.5.02", "name": "Asuransi Dibayar Dimuka", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.5"}, {"no": 24, "full": "1.1.5.03 PPh 25", "code": "1.1.5.03", "name": "PPh 25", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.5"}, {"no": 25, "full": "1.1.5.04 PPN Masukan", "code": "1.1.5.04", "name": "PPN Masukan", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.5"}, {"no": 26, "full": "1.1.8.99 Aset Lancar Lainnya", "code": "1.1.8.99", "name": "Aset Lancar Lainnya", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.8"}, {"no": 27, "full": "1.1.9.01 RK Pusat", "code": "1.1.9.01", "name": "RK Pusat", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.9"}, {"no": 28, "full": "1.1.9.02 RK Unit Toko", "code": "1.1.9.02", "name": "RK Unit Toko", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.9"}, {"no": 29, "full": "1.1.9.03 RK Pusat Unit Apotek", "code": "1.1.9.03", "name": "RK Pusat Unit Apotek", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.9"}, {"no": 30, "full": "1.1.9.04 RK Unit Simpan Pinjam", "code": "1.1.9.04", "name": "RK Unit Simpan Pinjam", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.9"}, {"no": 31, "full": "1.1.9.05 RK Unit Klinik", "code": "1.1.9.05", "name": "RK Unit Klinik", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.9"}, {"no": 32, "full": "1.1.9.06 RK Unit Gudang", "code": "1.1.9.06", "name": "RK Unit Gudang", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.9"}, {"no": 33, "full": "1.1.9.07 RK Unit Logistik", "code": "1.1.9.07", "name": "RK Unit Logistik", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.1", "lvl3": "1.1.9"}, {"no": 34, "full": "1.2.1.01 Investasi dalam Deposito", "code": "1.2.1.01", "name": "Investasi dalam Deposito", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.2", "lvl3": "1.2.1"}, {"no": 35, "full": "1.2.1.99 Investasi Lainnya", "code": "1.2.1.99", "name": "Investasi Lainnya", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.2", "lvl3": "1.2.1"}, {"no": 36, "full": "1.3.1.01 Tanah", "code": "1.3.1.01", "name": "Tanah", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.3", "lvl3": "1.3.1"}, {"no": 37, "full": "1.3.2.01 Gedung dan Bangunan", "code": "1.3.2.01", "name": "Gedung dan Bangunan", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.3", "lvl3": "1.3.2"}, {"no": 38, "full": "1.3.3.01 Peralatan dan Meubelair", "code": "1.3.3.01", "name": "Peralatan dan Meubelair", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.3", "lvl3": "1.3.3"}, {"no": 39, "full": "1.3.4.01 Kendaraan", "code": "1.3.4.01", "name": "Kendaraan", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.3", "lvl3": "1.3.4"}, {"no": 40, "full": "1.3.5.01 Akumulasi Penyusutan Gedung dan Bangunan", "code": "1.3.5.01", "name": "Akumulasi Penyusutan Gedung dan Bangunan", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.3", "lvl3": "1.3.5"}, {"no": 41, "full": "1.3.5.02 Akumulasi Penyusutan Peralatan dan Meubelair", "code": "1.3.5.02", "name": "Akumulasi Penyusutan Peralatan dan Meubelair", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.3", "lvl3": "1.3.5"}, {"no": 42, "full": "1.3.5.03 Akumulasi Penyusutan Kendaraan", "code": "1.3.5.03", "name": "Akumulasi Penyusutan Kendaraan", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.3", "lvl3": "1.3.5"}, {"no": 43, "full": "1.3.9.99 Aset Tetap Lainnya", "code": "1.3.9.99", "name": "Aset Tetap Lainnya", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.3", "lvl3": "1.3.9"}, {"no": 44, "full": "1.4.1.01 Software", "code": "1.4.1.01", "name": "Software", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.4", "lvl3": "1.4.1"}, {"no": 45, "full": "1.4.2.01 Amortisasi Aset Tidak Berwujud", "code": "1.4.2.01", "name": "Amortisasi Aset Tidak Berwujud", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.4", "lvl3": "1.4.2"}, {"no": 46, "full": "1.5.1.01 Investasi Jangka Panjang", "code": "1.5.1.01", "name": "Investasi Jangka Panjang", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.5", "lvl3": "1.5.1"}, {"no": 47, "full": "1.9.1.99 Aset Lain-lain lainnya", "code": "1.9.1.99", "name": "Aset Lain-lain lainnya", "normal": "Debit", "budget": 0, "lvl1": "1", "lvl2": "1.9", "lvl3": "1.9.1"}, {"no": 48, "full": "2.1.1.01 Utang Simpanan Pokok", "code": "2.1.1.01", "name": "Utang Simpanan Pokok", "normal": "Kredit", "budget": 0, "lvl1": "2", "lvl2": "2.1", "lvl3": "2.1.1"}, {"no": 49, "full": "2.1.1.02 Utang Simpanan Wajib", "code": "2.1.1.02", "name": "Utang Simpanan Wajib", "normal": "Kredit", "budget": 0, "lvl1": "2", "lvl2": "2.1", "lvl3": "2.1.1"}, {"no": 50, "full": "2.1.1.03 Utang Simpanan Sukarela", "code": "2.1.1.03", "name": "Utang Simpanan Sukarela", "normal": "Kredit", "budget": 0, "lvl1": "2", "lvl2": "2.1", "lvl3": "2.1.1"}, {"no": 51, "full": "2.1.2.01 Utang SHU", "code": "2.1.2.01", "name": "Utang SHU", "normal": "Kredit", "budget": 0, "lvl1": "2", "lvl2": "2.1", "lvl3": "2.1.2"}, {"no": 52, "full": "2.1.3.01 Utang Usaha", "code": "2.1.3.01", "name": "Utang Usaha", "normal": "Kredit", "budget": 0, "lvl1": "2", "lvl2": "2.1", "lvl3": "2.1.3"}, {"no": 53, "full": "2.1.3.02 Utang Dana Bergulir", "code": "2.1.3.02", "name": "Utang Dana Bergulir", "normal": "Kredit", "budget": 0, "lvl1": "2", "lvl2": "2.1", "lvl3": "2.1.3"}, {"no": 54, "full": "2.1.4.01 PPN Keluaran", "code": "2.1.4.01", "name": "PPN Keluaran", "normal": "Kredit", "budget": 0, "lvl1": "2", "lvl2": "2.1", "lvl3": "2.1.4"}, {"no": 55, "full": "2.1.4.02 PPh 21", "code": "2.1.4.02", "name": "PPh 21", "normal": "Kredit", "budget": 0, "lvl1": "2", "lvl2": "2.1", "lvl3": "2.1.4"}, {"no": 56, "full": "2.1.4.03 PPh 23", "code": "2.1.4.03", "name": "PPh 23", "normal": "Kredit", "budget": 0, "lvl1": "2", "lvl2": "2.1", "lvl3": "2.1.4"}, {"no": 57, "full": "2.1.4.04 PPh 29", "code": "2.1.4.04", "name": "PPh 29", "normal": "Kredit", "budget": 0, "lvl1": "2", "lvl2": "2.1", "lvl3": "2.1.4"}, {"no": 58, "full": "2.1.5.01 Utang Gaji dan Tunjangan", "code": "2.1.5.01", "name": "Utang Gaji dan Tunjangan", "normal": "Kredit", "budget": 0, "lvl1": "2", "lvl2": "2.1", "lvl3": "2.1.5"}, {"no": 59, "full": "2.1.6.01 Utang Listrik", "code": "2.1.6.01", "name": "Utang Listrik", "normal": "Kredit", "budget": 0, "lvl1": "2", "lvl2": "2.1", "lvl3": "2.1.6"}, {"no": 60, "full": "2.1.6.02 Utang Telepon", "code": "2.1.6.02", "name": "Utang Telepon", "normal": "Kredit", "budget": 0, "lvl1": "2", "lvl2": "2.1", "lvl3": "2.1.6"}, {"no": 61, "full": "2.1.6.99 Utang Utilitas Lainnya", "code": "2.1.6.99", "name": "Utang Utilitas Lainnya", "normal": "Kredit", "budget": 0, "lvl1": "2", "lvl2": "2.1", "lvl3": "2.1.6"}, {"no": 62, "full": "2.1.7.01 Pendapatan Sewa Diterima Dimuka", "code": "2.1.7.01", "name": "Pendapatan Sewa Diterima Dimuka", "normal": "Kredit", "budget": 0, "lvl1": "2", "lvl2": "2.1", "lvl3": "2.1.7"}, {"no": 63, "full": "2.1.8.01 Utang kepada Pihak Ketiga Jk. Pendek", "code": "2.1.8.01", "name": "Utang kepada Pihak Ketiga Jk. Pendek", "normal": "Kredit", "budget": 0, "lvl1": "2", "lvl2": "2.1", "lvl3": "2.1.8"}, {"no": 64, "full": "2.1.8.99 Utang kepada Pihak Ketiga Jk. Pendek Lainnya", "code": "2.1.8.99", "name": "Utang kepada Pihak Ketiga Jk. Pendek Lainnya", "normal": "Kredit", "budget": 0, "lvl1": "2", "lvl2": "2.1", "lvl3": "2.1.8"}, {"no": 65, "full": "2.1.9.99 Utang Jangka Pendek Lainnya", "code": "2.1.9.99", "name": "Utang Jangka Pendek Lainnya", "normal": "Kredit", "budget": 0, "lvl1": "2", "lvl2": "2.1", "lvl3": "2.1.9"}, {"no": 66, "full": "2.2.1.01 Utang kepada Pihak Ketiga Jk. Panjang", "code": "2.2.1.01", "name": "Utang kepada Pihak Ketiga Jk. Panjang", "normal": "Kredit", "budget": 0, "lvl1": "2", "lvl2": "2.2", "lvl3": "2.2.1"}, {"no": 67, "full": "2.2.2.01 Utang Ke Bank", "code": "2.2.2.01", "name": "Utang Ke Bank", "normal": "Kredit", "budget": 0, "lvl1": "2", "lvl2": "2.2", "lvl3": "2.2.2"}, {"no": 68, "full": "2.2.9.99 Utang Jangka Panjang Lainnya", "code": "2.2.9.99", "name": "Utang Jangka Panjang Lainnya", "normal": "Kredit", "budget": 0, "lvl1": "2", "lvl2": "2.2", "lvl3": "2.2.9"}, {"no": 69, "full": "3.1.1.01 Simpanan Pokok", "code": "3.1.1.01", "name": "Simpanan Pokok", "normal": "Kredit", "budget": 0, "lvl1": "3", "lvl2": "3.1", "lvl3": "3.1.1"}, {"no": 70, "full": "3.1.2.01 Simpanan Wajib", "code": "3.1.2.01", "name": "Simpanan Wajib", "normal": "Kredit", "budget": 0, "lvl1": "3", "lvl2": "3.1", "lvl3": "3.1.2"}, {"no": 71, "full": "3.1.3.01 Simpanan Sukarela", "code": "3.1.3.01", "name": "Simpanan Sukarela", "normal": "Kredit", "budget": 0, "lvl1": "3", "lvl2": "3.1", "lvl3": "3.1.3"}, {"no": 72, "full": "3.2.1.01 Hibah", "code": "3.2.1.01", "name": "Hibah", "normal": "Kredit", "budget": 0, "lvl1": "3", "lvl2": "3.2", "lvl3": "3.2.1"}, {"no": 73, "full": "3.3.1.01 Cadangan", "code": "3.3.1.01", "name": "Cadangan", "normal": "Kredit", "budget": 0, "lvl1": "3", "lvl2": "3.3", "lvl3": "3.3.1"}, {"no": 74, "full": "3.4.1.01 Sisa Hasil Usaha Belum Dibagikan", "code": "3.4.1.01", "name": "Sisa Hasil Usaha Belum Dibagikan", "normal": "Kredit", "budget": 0, "lvl1": "3", "lvl2": "3.4", "lvl3": "3.4.1"}, {"no": 75, "full": "3.9.1.01 Ikhtisar Sisa Hasil Usaha", "code": "3.9.1.01", "name": "Ikhtisar Sisa Hasil Usaha", "normal": "Kredit", "budget": 0, "lvl1": "3", "lvl2": "3.9", "lvl3": "3.9.1"}, {"no": 76, "full": "4.1.1.01 Pendapatan Penjualan Barang Dagangan (Anggota)", "code": "4.1.1.01", "name": "Pendapatan Penjualan Barang Dagangan (Anggota)", "normal": "Kredit", "budget": 0, "lvl1": "4", "lvl2": "4.1", "lvl3": "4.1.1"}, {"no": 77, "full": "4.1.1.02 Pendapatan Komisi Konsinyasi", "code": "4.1.1.02", "name": "Pendapatan Komisi Konsinyasi", "normal": "Kredit", "budget": 0, "lvl1": "4", "lvl2": "4.1", "lvl3": "4.1.1"}, {"no": 78, "full": "4.1.2.01 Pendapatan Penjualan Barang Jadi Anggota", "code": "4.1.2.01", "name": "Pendapatan Penjualan Barang Jadi Anggota", "normal": "Kredit", "budget": 0, "lvl1": "4", "lvl2": "4.1", "lvl3": "4.1.2"}, {"no": 79, "full": "4.1.3.01 Pendapatan Jasa Dokter (Anggota)", "code": "4.1.3.01", "name": "Pendapatan Jasa Dokter (Anggota)", "normal": "Kredit", "budget": 0, "lvl1": "4", "lvl2": "4.1", "lvl3": "4.1.3"}, {"no": 80, "full": "4.1.3.02 Pendapatan Jasa Pinjaman (Anggota)", "code": "4.1.3.02", "name": "Pendapatan Jasa Pinjaman (Anggota)", "normal": "Kredit", "budget": 0, "lvl1": "4", "lvl2": "4.1", "lvl3": "4.1.3"}, {"no": 81, "full": "4.1.3.03 Pendapatan Jasa Sewa (Anggota)", "code": "4.1.3.03", "name": "Pendapatan Jasa Sewa (Anggota)", "normal": "Kredit", "budget": 0, "lvl1": "4", "lvl2": "4.1", "lvl3": "4.1.3"}, {"no": 82, "full": "4.1.3.04 Pendapatan Jasa Pengiriman (Anggota)", "code": "4.1.3.04", "name": "Pendapatan Jasa Pengiriman (Anggota)", "normal": "Kredit", "budget": 0, "lvl1": "4", "lvl2": "4.1", "lvl3": "4.1.3"}, {"no": 83, "full": "4.1.9.01 Pendapatan Pelayanan Anggota Lainnya", "code": "4.1.9.01", "name": "Pendapatan Pelayanan Anggota Lainnya", "normal": "Kredit", "budget": 0, "lvl1": "4", "lvl2": "4.1", "lvl3": "4.1.9"}, {"no": 84, "full": "4.2.1.01 Pendapatan Penjualan Barang Dagangan (Non-Anggota)", "code": "4.2.1.01", "name": "Pendapatan Penjualan Barang Dagangan (Non-Anggota)", "normal": "Kredit", "budget": 0, "lvl1": "4", "lvl2": "4.2", "lvl3": "4.2.1"}, {"no": 85, "full": "4.2.2.01 Pendapatan Penjualan Barang Jadi (Non-Anggota)", "code": "4.2.2.01", "name": "Pendapatan Penjualan Barang Jadi (Non-Anggota)", "normal": "Kredit", "budget": 0, "lvl1": "4", "lvl2": "4.2", "lvl3": "4.2.2"}, {"no": 86, "full": "4.2.3.01 Pendapatan Jasa Dokter (Non-Anggota)", "code": "4.2.3.01", "name": "Pendapatan Jasa Dokter (Non-Anggota)", "normal": "Kredit", "budget": 0, "lvl1": "4", "lvl2": "4.2", "lvl3": "4.2.3"}, {"no": 87, "full": "4.2.3.02 Pendapatan Jasa Pinjaman (Non-Anggota)", "code": "4.2.3.02", "name": "Pendapatan Jasa Pinjaman (Non-Anggota)", "normal": "Kredit", "budget": 0, "lvl1": "4", "lvl2": "4.2", "lvl3": "4.2.3"}, {"no": 88, "full": "4.2.3.03 Pendapatan Jasa Sewa (Non-Anggota)", "code": "4.2.3.03", "name": "Pendapatan Jasa Sewa (Non-Anggota)", "normal": "Kredit", "budget": 0, "lvl1": "4", "lvl2": "4.2", "lvl3": "4.2.3"}, {"no": 89, "full": "4.2.3.04 Pendapatan Jasa Pengiriman (Non-Anggota)", "code": "4.2.3.04", "name": "Pendapatan Jasa Pengiriman (Non-Anggota)", "normal": "Kredit", "budget": 0, "lvl1": "4", "lvl2": "4.2", "lvl3": "4.2.3"}, {"no": 90, "full": "4.2.9.01 Pendapatan Pelayanan Non-Anggota Lainnya", "code": "4.2.9.01", "name": "Pendapatan Pelayanan Non-Anggota Lainnya", "normal": "Kredit", "budget": 0, "lvl1": "4", "lvl2": "4.2", "lvl3": "4.2.9"}, {"no": 91, "full": "5.1.1.01 Harga Pokok Penjualan Barang Dagangan", "code": "5.1.1.01", "name": "Harga Pokok Penjualan Barang Dagangan", "normal": "Debit", "budget": 0, "lvl1": "5", "lvl2": "5.1", "lvl3": "5.1.1"}, {"no": 92, "full": "5.1.1.02 Harga Pokok Penjualan Barang Jadi", "code": "5.1.1.02", "name": "Harga Pokok Penjualan Barang Jadi", "normal": "Debit", "budget": 0, "lvl1": "5", "lvl2": "5.1", "lvl3": "5.1.1"}, {"no": 93, "full": "5.2.1.01 Harga Pokok Produksi", "code": "5.2.1.01", "name": "Harga Pokok Produksi", "normal": "Debit", "budget": 0, "lvl1": "5", "lvl2": "5.2", "lvl3": "5.2.1"}, {"no": 94, "full": "6.1.1.01 Beban Gaji dan Tunjangan Pegawai", "code": "6.1.1.01", "name": "Beban Gaji dan Tunjangan Pegawai", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.1"}, {"no": 95, "full": "6.1.1.02 Beban Gaji dan Tunjangan Pengawas", "code": "6.1.1.02", "name": "Beban Gaji dan Tunjangan Pengawas", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.1"}, {"no": 96, "full": "6.1.1.03 Beban Honor Lembur", "code": "6.1.1.03", "name": "Beban Honor Lembur", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.1"}, {"no": 97, "full": "6.1.1.04 Beban Insentif (Bonus)", "code": "6.1.1.04", "name": "Beban Insentif (Bonus)", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.1"}, {"no": 98, "full": "6.1.1.05 Beban Komisi", "code": "6.1.1.05", "name": "Beban Komisi", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.1"}, {"no": 99, "full": "6.1.1.06 Beban Seragam Pegawai", "code": "6.1.1.06", "name": "Beban Seragam Pegawai", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.1"}, {"no": 100, "full": "6.1.1.07 Beban Penguatan SDM", "code": "6.1.1.07", "name": "Beban Penguatan SDM", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.1"}, {"no": 101, "full": "6.1.1.99 Beban Pegawai  Lainnya", "code": "6.1.1.99", "name": "Beban Pegawai  Lainnya", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.1"}, {"no": 102, "full": "6.1.2.01 Beban ATK", "code": "6.1.2.01", "name": "Beban ATK", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.2"}, {"no": 103, "full": "6.1.2.02 Beban Foto Copy", "code": "6.1.2.02", "name": "Beban Foto Copy", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.2"}, {"no": 104, "full": "6.1.2.03 Beban Konsumsi Rapat", "code": "6.1.2.03", "name": "Beban Konsumsi Rapat", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.2"}, {"no": 105, "full": "6.1.2.04 Beban Cetak dan Dekorasi", "code": "6.1.2.04", "name": "Beban Cetak dan Dekorasi", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.2"}, {"no": 106, "full": "6.1.2.99 Beban Perlengkapan Lainnya", "code": "6.1.2.99", "name": "Beban Perlengkapan Lainnya", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.2"}, {"no": 107, "full": "6.1.3.01 Beban Pemeliharaan dan Perbaikan", "code": "6.1.3.01", "name": "Beban Pemeliharaan dan Perbaikan", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.3"}, {"no": 108, "full": "6.1.4.01 Beban Listrik", "code": "6.1.4.01", "name": "Beban Listrik", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.4"}, {"no": 109, "full": "6.1.4.02 Beban Telepon dan Internet", "code": "6.1.4.02", "name": "Beban Telepon dan Internet", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.4"}, {"no": 110, "full": "6.1.4.99 Beban Utilitas Lainnya", "code": "6.1.4.99", "name": "Beban Utilitas Lainnya", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.4"}, {"no": 111, "full": "6.1.5.01 Beban Sewa", "code": "6.1.5.01", "name": "Beban Sewa", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.5"}, {"no": 112, "full": "6.1.5.02 Beban Asuransi", "code": "6.1.5.02", "name": "Beban Asuransi", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.5"}, {"no": 113, "full": "6.1.6.01 Beban Keamanan", "code": "6.1.6.01", "name": "Beban Keamanan", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.6"}, {"no": 114, "full": "6.1.6.02 Beban Kebersihan", "code": "6.1.6.02", "name": "Beban Kebersihan", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.6"}, {"no": 115, "full": "6.1.7.01 Beban Penyisihan Piutang Tak Tertagih", "code": "6.1.7.01", "name": "Beban Penyisihan Piutang Tak Tertagih", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.7"}, {"no": 116, "full": "6.1.8.02 Beban Penyusutan Gedung dan Bangunan", "code": "6.1.8.02", "name": "Beban Penyusutan Gedung dan Bangunan", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.8"}, {"no": 117, "full": "6.1.8.03 Beban Penyusutan Peralatan dan Meubelair", "code": "6.1.8.03", "name": "Beban Penyusutan Peralatan dan Meubelair", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.8"}, {"no": 118, "full": "6.1.8.04 Beban Penyusutan Kendaraan", "code": "6.1.8.04", "name": "Beban Penyusutan Kendaraan", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.8"}, {"no": 119, "full": "6.1.8.05 Beban Amortisasi Aset Tak Berwujud", "code": "6.1.8.05", "name": "Beban Amortisasi Aset Tak Berwujud", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.8"}, {"no": 120, "full": "6.1.9.01 Beban Parkir", "code": "6.1.9.01", "name": "Beban Parkir", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.9"}, {"no": 121, "full": "6.1.9.02 Beban Laundry", "code": "6.1.9.02", "name": "Beban Laundry", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.9"}, {"no": 122, "full": "6.1.9.03 Beban Pendamping", "code": "6.1.9.03", "name": "Beban Pendamping", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.9"}, {"no": 123, "full": "6.1.9.04 Beban Pengawas", "code": "6.1.9.04", "name": "Beban Pengawas", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.9"}, {"no": 124, "full": "6.1.9.05 Beban Audit", "code": "6.1.9.05", "name": "Beban Audit", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.9"}, {"no": 125, "full": "6.1.9.06 Beban Perjalanan Dinas", "code": "6.1.9.06", "name": "Beban Perjalanan Dinas", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.9"}, {"no": 126, "full": "6.1.9.07 Beban Transportasi", "code": "6.1.9.07", "name": "Beban Transportasi", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.9"}, {"no": 127, "full": "6.1.9.08 Beban Jamuan Tamu", "code": "6.1.9.08", "name": "Beban Jamuan Tamu", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.9"}, {"no": 128, "full": "6.1.9.99 Beban Administrasi dan Umum Lainnya", "code": "6.1.9.99", "name": "Beban Administrasi dan Umum Lainnya", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.1", "lvl3": "6.1.9"}, {"no": 129, "full": "6.2.1.01 Beban Gaji dan Tunjangan Bag. Pemasaran", "code": "6.2.1.01", "name": "Beban Gaji dan Tunjangan Bag. Pemasaran", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.2", "lvl3": "6.2.1"}, {"no": 130, "full": "6.2.2.01 Beban Iklan", "code": "6.2.2.01", "name": "Beban Iklan", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.2", "lvl3": "6.2.2"}, {"no": 131, "full": "6.2.2.02 Beban Promosi", "code": "6.2.2.02", "name": "Beban Promosi", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.2", "lvl3": "6.2.2"}, {"no": 132, "full": "6.2.2.03 Beban Dana Sosial", "code": "6.2.2.03", "name": "Beban Dana Sosial", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.2", "lvl3": "6.2.2"}, {"no": 133, "full": "6.2.3.99 Beban Pemasaran Lainnya", "code": "6.2.3.99", "name": "Beban Pemasaran Lainnya", "normal": "Debit", "budget": 0, "lvl1": "6", "lvl2": "6.2", "lvl3": "6.2.3"}, {"no": 134, "full": "9.1.1.01 Pendapatan Bunga", "code": "9.1.1.01", "name": "Pendapatan Bunga", "normal": "Kredit", "budget": 0, "lvl1": "9", "lvl2": "9.1", "lvl3": "9.1.1"}, {"no": 135, "full": "9.1.2.01 Pendapatan Sewa", "code": "9.1.2.01", "name": "Pendapatan Sewa", "normal": "Kredit", "budget": 0, "lvl1": "9", "lvl2": "9.1", "lvl3": "9.1.2"}, {"no": 136, "full": "9.1.3.01 Pendapatan Denda", "code": "9.1.3.01", "name": "Pendapatan Denda", "normal": "Kredit", "budget": 0, "lvl1": "9", "lvl2": "9.1", "lvl3": "9.1.3"}, {"no": 137, "full": "9.1.4.01 Pendapatan Iklan", "code": "9.1.4.01", "name": "Pendapatan Iklan", "normal": "Kredit", "budget": 0, "lvl1": "9", "lvl2": "9.1", "lvl3": "9.1.4"}, {"no": 138, "full": "9.1.9.99 Pendapatan Lain-lain lainnya", "code": "9.1.9.99", "name": "Pendapatan Lain-lain lainnya", "normal": "Kredit", "budget": 0, "lvl1": "9", "lvl2": "9.1", "lvl3": "9.1.9"}, {"no": 139, "full": "9.2.1.01 Beban Administrasi Bank", "code": "9.2.1.01", "name": "Beban Administrasi Bank", "normal": "Debit", "budget": 0, "lvl1": "9", "lvl2": "9.2", "lvl3": "9.2.1"}, {"no": 140, "full": "9.2.2.01 Beban Bunga", "code": "9.2.2.01", "name": "Beban Bunga", "normal": "Debit", "budget": 0, "lvl1": "9", "lvl2": "9.2", "lvl3": "9.2.2"}, {"no": 141, "full": "9.2.3.01 Beban Sewa", "code": "9.2.3.01", "name": "Beban Sewa", "normal": "Debit", "budget": 0, "lvl1": "9", "lvl2": "9.2", "lvl3": "9.2.3"}, {"no": 142, "full": "9.2.9.99 Beban Lain-lain lainnya", "code": "9.2.9.99", "name": "Beban Lain-lain lainnya", "normal": "Debit", "budget": 0, "lvl1": "9", "lvl2": "9.2", "lvl3": "9.2.9"}, {"no": 143, "full": "9.3.1.01 Beban Pajak Bunga Bank", "code": "9.3.1.01", "name": "Beban Pajak Bunga Bank", "normal": "Debit", "budget": 0, "lvl1": "9", "lvl2": "9.3", "lvl3": "9.3.1"}, {"no": 144, "full": "9.3.1.02 Beban Pajak Reklame", "code": "9.3.1.02", "name": "Beban Pajak Reklame", "normal": "Debit", "budget": 0, "lvl1": "9", "lvl2": "9.3", "lvl3": "9.3.1"}, {"no": 145, "full": "9.3.1.03 Beban PPh 21", "code": "9.3.1.03", "name": "Beban PPh 21", "normal": "Debit", "budget": 0, "lvl1": "9", "lvl2": "9.3", "lvl3": "9.3.1"}, {"no": 146, "full": "9.3.1.04 Beban PPh 23", "code": "9.3.1.04", "name": "Beban PPh 23", "normal": "Debit", "budget": 0, "lvl1": "9", "lvl2": "9.3", "lvl3": "9.3.1"}, {"no": 147, "full": "9.3.1.05 Beban PPh 25", "code": "9.3.1.05", "name": "Beban PPh 25", "normal": "Debit", "budget": 0, "lvl1": "9", "lvl2": "9.3", "lvl3": "9.3.1"}, {"no": 148, "full": "9.3.1.06 Beban PPh 29", "code": "9.3.1.06", "name": "Beban PPh 29", "normal": "Debit", "budget": 0, "lvl1": "9", "lvl2": "9.3", "lvl3": "9.3.1"}, {"no": 149, "full": "9.3.1.07 Beban PPh Final", "code": "9.3.1.07", "name": "Beban PPh Final", "normal": "Debit", "budget": 0, "lvl1": "9", "lvl2": "9.3", "lvl3": "9.3.1"}, {"no": 150, "full": "9.3.1.08 Beban PPh Koperasi", "code": "9.3.1.08", "name": "Beban PPh Koperasi", "normal": "Debit", "budget": 0, "lvl1": "9", "lvl2": "9.3", "lvl3": "9.3.1"}, {"no": 151, "full": "9.3.1.99 Beban Pajak Lainnya", "code": "9.3.1.99", "name": "Beban Pajak Lainnya", "normal": "Debit", "budget": 0, "lvl1": "9", "lvl2": "9.3", "lvl3": "9.3.1"}];
 
     const CASHFLOW_COMPONENTS = [
@@ -1044,250 +1040,20 @@
       accountantNik: "3308104505950002"
     };
 
-    // Master Barang Persediaan Awal (Terhubung langsung dengan transaksi di Excel)
     const INITIAL_ITEMS = [
-      {
-        code: "BRG-001",
-        name: "Gas LPG 3 Kg",
-        account: "1.1.4.01 Persediaan Barang Dagangan",
-        unit: "Tabung",
-        initQty: 0,
-        minQty: 100,
-        cost: 18000,
-        price: 21000
-      },
-      {
-        code: "BRG-002",
-        name: "Beras Merah Putih Premium 5 Kg",
-        account: "1.1.4.01 Persediaan Barang Dagangan",
-        unit: "Sak",
-        initQty: 0,
-        minQty: 20,
-        cost: 62000,
-        price: 68000
-      },
-      {
-        code: "BRG-003",
-        name: "Minyak Goreng Kemasan 1 Liter",
-        account: "1.1.4.01 Persediaan Barang Dagangan",
-        unit: "Pouch",
-        initQty: 0,
-        minQty: 30,
-        cost: 15500,
-        price: 17500
-      },
-      {
-        code: "BRG-004",
-        name: "Pupuk Urea Subsidi 50 Kg",
-        account: "1.1.4.01 Persediaan Barang Dagangan",
-        unit: "Sak",
-        initQty: 0,
-        minQty: 15,
-        cost: 112500,
-        price: 125000
-      },
-      {
-        code: "BRG-005",
-        name: "Kertas HVS A4 80gr (ATK Koperasi)",
-        account: "1.1.4.02 Persediaan ATK",
-        unit: "Rim",
-        initQty: 0,
-        minQty: 5,
-        cost: 50000,
-        price: 55000
-      }
+      { code: "BRG-001", name: "Gas LPG 3 Kg", account: "1.1.4.01 Persediaan Barang Dagangan", unit: "Tabung", initQty: 0, minQty: 100, cost: 18000, price: 21000 },
+      { code: "BRG-002", name: "Beras Merah Putih Premium 5 Kg", account: "1.1.4.01 Persediaan Barang Dagangan", unit: "Sak", initQty: 0, minQty: 20, cost: 62000, price: 68000 },
+      { code: "BRG-003", name: "Minyak Goreng Kemasan 1 Liter", account: "1.1.4.01 Persediaan Barang Dagangan", unit: "Pouch", initQty: 0, minQty: 30, cost: 15500, price: 17500 },
+      { code: "BRG-004", name: "Pupuk Urea Subsidi 50 Kg", account: "1.1.4.01 Persediaan Barang Dagangan", unit: "Sak", initQty: 0, minQty: 15, cost: 112500, price: 125000 },
+      { code: "BRG-005", name: "Kertas HVS A4 80gr (ATK Koperasi)", account: "1.1.4.02 Persediaan ATK", unit: "Rim", initQty: 0, minQty: 5, cost: 50000, price: 55000 }
     ];
 
-    // Jurnal Awal dari File Excel "Aplikasi Akuntansi Koperasi ver 3.3.xlsm" + 1 contoh penjualan Gas LPG agar fitur Masuk & Keluar langsung terlihat
-    const INITIAL_JOURNALS = [
-      {
-        id: "J-001",
-        date: "2026-01-01",
-        docNo: "001/01/KDMP-PM/2026",
-        account: "1.1.1.02 Kas di Bank BRI",
-        itemName: "",
-        qty: 0,
-        debit: 15000000,
-        kredit: 0,
-        desc: "Penerimaan Iuran Simpanan Anggota",
-        cashflow: "Simpanan Anggota"
-      },
-      {
-        id: "J-002",
-        date: "2026-01-01",
-        docNo: "001/01/KDMP-PM/2026",
-        account: "3.1.1.01 Simpanan Pokok",
-        itemName: "",
-        qty: 0,
-        debit: 0,
-        kredit: 10000000,
-        desc: "Penerimaan Iuran Simpanan Anggota",
-        cashflow: ""
-      },
-      {
-        id: "J-003",
-        date: "2026-01-01",
-        docNo: "001/01/KDMP-PM/2026",
-        account: "3.1.2.01 Simpanan Wajib",
-        itemName: "",
-        qty: 0,
-        debit: 0,
-        kredit: 5000000,
-        desc: "Penerimaan Iuran Simpanan Anggota",
-        cashflow: ""
-      },
-      {
-        id: "J-004",
-        date: "2026-01-01",
-        docNo: "002/01/KDMP-PM/2026",
-        account: "1.1.1.02 Kas di Bank BRI",
-        itemName: "",
-        qty: 0,
-        debit: 50000000,
-        kredit: 0,
-        desc: "Hibah",
-        cashflow: "Hibah"
-      },
-      {
-        id: "J-005",
-        date: "2026-01-01",
-        docNo: "002/01/KDMP-PM/2026",
-        account: "3.2.1.01 Hibah",
-        itemName: "",
-        qty: 0,
-        debit: 0,
-        kredit: 50000000,
-        desc: "Hibah",
-        cashflow: ""
-      },
-      {
-        id: "J-006",
-        date: "2026-01-05",
-        docNo: "003/01/KDMP-PM/2026",
-        account: "1.1.4.01 Persediaan Barang Dagangan",
-        itemName: "Gas LPG 3 Kg",
-        qty: 1200,
-        debit: 21600000,
-        kredit: 0,
-        desc: "Beli Gas LPG 3 Kg (1.200 Tabung @ Rp 18.000)",
-        cashflow: ""
-      },
-      {
-        id: "J-007",
-        date: "2026-01-05",
-        docNo: "003/01/KDMP-PM/2026",
-        account: "1.1.1.02 Kas di Bank BRI",
-        itemName: "",
-        qty: 0,
-        debit: 0,
-        kredit: 21600000,
-        desc: "Beli Gas LPG 3 Kg (1.200 Tabung @ Rp 18.000)",
-        cashflow: "Pembelian Harga Pokok Barang"
-      },
-      {
-        id: "J-008",
-        date: "2026-01-05",
-        docNo: "004/01/KDMP-PM/2026",
-        account: "9.3.1.03 Beban PPh 21",
-        itemName: "",
-        qty: 0,
-        debit: 100000000,
-        kredit: 0,
-        desc: "Bayar pajak pegawai",
-        cashflow: ""
-      },
-      {
-        id: "J-009",
-        date: "2026-01-05",
-        docNo: "004/01/KDMP-PM/2026",
-        account: "1.1.1.02 Kas di Bank BRI",
-        itemName: "",
-        qty: 0,
-        debit: 0,
-        kredit: 100000000,
-        desc: "Bayar pajak pegawai",
-        cashflow: "Pembayaran Pajak"
-      },
-      {
-        id: "J-010",
-        date: "2026-01-05",
-        docNo: "005/01/KDMP-PM/2026",
-        account: "1.1.1.02 Kas di Bank BRI",
-        itemName: "",
-        qty: 0,
-        debit: 50000000,
-        kredit: 0,
-        desc: "Dokter buka praktek di belakang KDMP",
-        cashflow: "Penerimaan Kas dari Pelayanan kepada Anggota"
-      },
-      {
-        id: "J-011",
-        date: "2026-01-05",
-        docNo: "005/01/KDMP-PM/2026",
-        account: "4.1.3.01 Pendapatan Jasa Dokter (Anggota)",
-        itemName: "",
-        qty: 0,
-        debit: 0,
-        kredit: 50000000,
-        desc: "Dokter buka praktek di belakang KDMP",
-        cashflow: ""
-      },
-      {
-        id: "J-012",
-        date: "2026-01-08",
-        docNo: "006/01/KDMP-PM/2026",
-        account: "1.1.1.02 Kas di Bank BRI",
-        itemName: "",
-        qty: 0,
-        debit: 4200000,
-        kredit: 0,
-        desc: "Penjualan 200 Tabung Gas LPG 3 Kg ke Anggota @ Rp 21.000",
-        cashflow: "Penerimaan Kas dari Pelayanan kepada Anggota"
-      },
-      {
-        id: "J-013",
-        date: "2026-01-08",
-        docNo: "006/01/KDMP-PM/2026",
-        account: "4.1.1.01 Pendapatan Penjualan Barang Dagangan (Anggota)",
-        itemName: "",
-        qty: 0,
-        debit: 0,
-        kredit: 4200000,
-        desc: "Penjualan 200 Tabung Gas LPG 3 Kg ke Anggota @ Rp 21.000",
-        cashflow: ""
-      },
-      {
-        id: "J-014",
-        date: "2026-01-08",
-        docNo: "006/01/KDMP-PM/2026",
-        account: "5.1.1.01 Harga Pokok Penjualan Barang Dagangan",
-        itemName: "",
-        qty: 0,
-        debit: 3600000,
-        kredit: 0,
-        desc: "HPP Penjualan 200 Tabung Gas LPG 3 Kg @ Rp 18.000",
-        cashflow: ""
-      },
-      {
-        id: "J-015",
-        date: "2026-01-08",
-        docNo: "006/01/KDMP-PM/2026",
-        account: "1.1.4.01 Persediaan Barang Dagangan",
-        itemName: "Gas LPG 3 Kg",
-        qty: 200,
-        debit: 0,
-        kredit: 3600000,
-        desc: "Pengeluaran Stok 200 Tabung Gas LPG 3 Kg (HPP @ Rp 18.000)",
-        cashflow: ""
-      }
-    ];
-
-    // ==================== STATE MANAGEMENT ====================
+    // STATE INITIALIZATION
     let state = {
       identity: JSON.parse(JSON.stringify(INITIAL_IDENTITY)),
       coa: JSON.parse(JSON.stringify(INITIAL_COA)),
       items: JSON.parse(JSON.stringify(INITIAL_ITEMS)),
-      journals: JSON.parse(JSON.stringify(INITIAL_JOURNALS))
+      journals: [] // KOSONG AGAR NOMINAL PADA NOL DI AWAL
     };
 
     const STORAGE_KEY = "siakad_kdmp_v4_state";
@@ -1314,7 +1080,7 @@
       }
     }
 
-    // ==================== HELPER FORMATTING ====================
+    // HELPER FUNCTIONS
     function fmtRp(val) {
       const n = Number(val) || 0;
       const abs = Math.abs(Math.round(n));
@@ -1337,9 +1103,7 @@
       el.innerHTML = `<span>${msg}</span><button type="button" class="text-white/70 hover:text-white font-bold">✕</button>`;
       el.querySelector("button").addEventListener("click", () => el.remove());
       container.appendChild(el);
-      setTimeout(() => {
-        if (el.parentNode) el.remove();
-      }, 4000);
+      setTimeout(() => { if (el.parentNode) el.remove(); }, 4000);
     }
 
     function getAccountObj(fullOrCode) {
@@ -1347,25 +1111,13 @@
       return state.coa.find(a => a.full === fullOrCode || a.code === fullOrCode) || null;
     }
 
-    function isInventoryAccount(accFull) {
-      return accFull && accFull.startsWith("1.1.4");
-    }
-
-    // ==================== ENGINE PERHITUNGAN STOK & AKUNTANSI ====================
+    // ENGINE CALCULATIONS
     function computeInventorySummary() {
       const map = {};
       state.items.forEach(item => {
-        map[item.name] = {
-          ...item,
-          qtyIn: 0,
-          qtyOut: 0,
-          valIn: 0,
-          valOut: 0,
-          mutations: []
-        };
+        map[item.name] = { ...item, qtyIn: 0, qtyOut: 0, valIn: 0, valOut: 0, mutations: [] };
       });
 
-      // Urutkan jurnal berdasarkan tanggal
       const sortedJournals = [...state.journals].sort((a, b) => (a.date || "").localeCompare(b.date || ""));
 
       sortedJournals.forEach(j => {
@@ -1374,34 +1126,15 @@
           const q = Number(j.qty) || 0;
           const d = Number(j.debit) || 0;
           const k = Number(j.kredit) || 0;
-          // Jika akun persediaan didebit -> Barang Masuk; jika dikredit -> Barang Keluar
-          // Atau jika bukan akun 1.1.4 namun user memilih itemName: Debit = Masuk, Kredit = Keluar
+
           if (d > 0 && k === 0) {
             entry.qtyIn += q;
             entry.valIn += d;
-            entry.mutations.push({
-              date: j.date,
-              docNo: j.docNo,
-              type: "MASUK",
-              qtyIn: q,
-              qtyOut: 0,
-              val: d,
-              desc: j.desc,
-              account: j.account
-            });
+            entry.mutations.push({ date: j.date, docNo: j.docNo, type: "MASUK", qtyIn: q, qtyOut: 0, val: d, desc: j.desc, account: j.account });
           } else if (k > 0) {
             entry.qtyOut += q;
             entry.valOut += k;
-            entry.mutations.push({
-              date: j.date,
-              docNo: j.docNo,
-              type: "KELUAR",
-              qtyIn: 0,
-              qtyOut: q,
-              val: k,
-              desc: j.desc,
-              account: j.account
-            });
+            entry.mutations.push({ date: j.date, docNo: j.docNo, type: "KELUAR", qtyIn: 0, qtyOut: q, val: k, desc: j.desc, account: j.account });
           }
         }
       });
@@ -1409,18 +1142,11 @@
       return Object.values(map).map(it => {
         const finalQty = (Number(it.initQty) || 0) + it.qtyIn - it.qtyOut;
         const initVal = (Number(it.initQty) || 0) * (Number(it.cost) || 0);
-        // Nilai persediaan menggunakan HPP * stok akhir atau nilai buku berjalan
         const finalVal = finalQty * (Number(it.cost) || 0);
         let status = "AMAN";
         if (finalQty <= 0) status = "HABIS";
         else if (finalQty <= (Number(it.minQty) || 0)) status = "MENIPIS";
-        return {
-          ...it,
-          finalQty,
-          initVal,
-          finalVal,
-          status
-        };
+        return { ...it, finalQty, initVal, finalVal, status };
       });
     }
 
@@ -1437,19 +1163,7 @@
         const lvl3 = code.substring(0, 5);
         const jumlah = normal === "Debit" ? (debit - kredit) : (kredit - debit);
         const isSaldoAwal = (j.desc || "").toLowerCase().trim() === "saldo awal";
-        return {
-          ...j,
-          debit,
-          kredit,
-          normal,
-          month,
-          code,
-          lvl1,
-          lvl2,
-          lvl3,
-          jumlah,
-          isSaldoAwal
-        };
+        return { ...j, debit, kredit, normal, month, code, lvl1, lvl2, lvl3, jumlah, isSaldoAwal };
       });
     }
 
@@ -1467,14 +1181,7 @@
         const saldoDebit = mutDebit > mutKredit ? mutDebit - mutKredit : 0;
         const saldoKredit = mutKredit > mutDebit ? mutKredit - mutDebit : 0;
         const saldoAkhir = acc.normal === "Debit" ? (saldoDebit - saldoKredit) : (saldoKredit - saldoDebit);
-        return {
-          ...acc,
-          mutDebit,
-          mutKredit,
-          saldoDebit,
-          saldoKredit,
-          saldoAkhir
-        };
+        return { ...acc, mutDebit, mutKredit, saldoDebit, saldoKredit, saldoAkhir };
       });
     }
 
@@ -1502,105 +1209,49 @@
 
       const r411 = rowVal("4.1.1");
       const r412 = rowVal("4.1.2");
-      const r413 = rowVal("4.1.3"); // Perbaikan bug Excel yang sebelumnya 4.1.2 ganda!
+      const r413 = rowVal("4.1.3");
       const r419 = rowVal("4.1.9");
-      const totPelayananAnggota = {
-        mVal: r411.mVal + r412.mVal + r413.mVal + r419.mVal,
-        yVal: r411.yVal + r412.yVal + r413.yVal + r419.yVal
-      };
+      const totPelayananAnggota = { mVal: r411.mVal + r412.mVal + r413.mVal + r419.mVal, yVal: r411.yVal + r412.yVal + r413.yVal + r419.yVal };
 
       const r421 = rowVal("4.2.1");
       const r422 = rowVal("4.2.2");
       const r423 = rowVal("4.2.3");
       const r429 = rowVal("4.2.9");
-      const totNonAnggota = {
-        mVal: r421.mVal + r422.mVal + r423.mVal + r429.mVal,
-        yVal: r421.yVal + r422.yVal + r423.yVal + r429.yVal
-      };
+      const totNonAnggota = { mVal: r421.mVal + r422.mVal + r423.mVal + r429.mVal, yVal: r421.yVal + r422.yVal + r423.yVal + r429.yVal };
 
-      const totPendapatan = {
-        mVal: totPelayananAnggota.mVal + totNonAnggota.mVal,
-        yVal: totPelayananAnggota.yVal + totNonAnggota.yVal
-      };
+      const totPendapatan = { mVal: totPelayananAnggota.mVal + totNonAnggota.mVal, yVal: totPelayananAnggota.yVal + totNonAnggota.yVal };
 
       const r511 = rowVal("5.1.1");
       const r521 = rowVal("5.2.1");
-      const totHPP = {
-        mVal: r511.mVal + r521.mVal,
-        yVal: r511.yVal + r521.yVal
-      };
+      const totHPP = { mVal: r511.mVal + r521.mVal, yVal: r511.yVal + r521.yVal };
 
-      const shuKotor = {
-        mVal: totPendapatan.mVal - totHPP.mVal,
-        yVal: totPendapatan.yVal - totHPP.yVal
-      };
+      const shuKotor = { mVal: totPendapatan.mVal - totHPP.mVal, yVal: totPendapatan.yVal - totHPP.yVal };
 
-      const r611 = rowVal("6.1.1");
-      const r612 = rowVal("6.1.2");
-      const r613 = rowVal("6.1.3");
-      const r614 = rowVal("6.1.4");
-      const r615 = rowVal("6.1.5");
-      const r616 = rowVal("6.1.6");
-      const r617 = rowVal("6.1.7");
-      const r618 = rowVal("6.1.8");
-      const r619 = rowVal("6.1.9");
+      const r611 = rowVal("6.1.1"); const r612 = rowVal("6.1.2"); const r613 = rowVal("6.1.3");
+      const r614 = rowVal("6.1.4"); const r615 = rowVal("6.1.5"); const r616 = rowVal("6.1.6");
+      const r617 = rowVal("6.1.7"); const r618 = rowVal("6.1.8"); const r619 = rowVal("6.1.9");
       const totBebanAdmin = {
         mVal: r611.mVal + r612.mVal + r613.mVal + r614.mVal + r615.mVal + r616.mVal + r617.mVal + r618.mVal + r619.mVal,
         yVal: r611.yVal + r612.yVal + r613.yVal + r614.yVal + r615.yVal + r616.yVal + r617.yVal + r618.yVal + r619.yVal
       };
 
-      const r621 = rowVal("6.2.1");
-      const r622 = rowVal("6.2.2");
-      const r623 = rowVal("6.2.3");
-      const totBebanPemasaran = {
-        mVal: r621.mVal + r622.mVal + r623.mVal,
-        yVal: r621.yVal + r622.yVal + r623.yVal
-      };
+      const r621 = rowVal("6.2.1"); const r622 = rowVal("6.2.2"); const r623 = rowVal("6.2.3");
+      const totBebanPemasaran = { mVal: r621.mVal + r622.mVal + r623.mVal, yVal: r621.yVal + r622.yVal + r623.yVal };
+      const totBebanOperasional = { mVal: totBebanAdmin.mVal + totBebanPemasaran.mVal, yVal: totBebanAdmin.yVal + totBebanPemasaran.yVal };
 
-      const totBebanOperasional = {
-        mVal: totBebanAdmin.mVal + totBebanPemasaran.mVal,
-        yVal: totBebanAdmin.yVal + totBebanPemasaran.yVal
-      };
+      const shuOperasional = { mVal: shuKotor.mVal - totBebanOperasional.mVal, yVal: shuKotor.yVal - totBebanOperasional.yVal };
 
-      const shuOperasional = {
-        mVal: shuKotor.mVal - totBebanOperasional.mVal,
-        yVal: shuKotor.yVal - totBebanOperasional.yVal
-      };
+      const r911 = rowVal("9.1.1"); const r912 = rowVal("9.1.2"); const r913 = rowVal("9.1.3"); const r914 = rowVal("9.1.4"); const r919 = rowVal("9.1.9");
+      const totPendapatanLain = { mVal: r911.mVal + r912.mVal + r913.mVal + r914.mVal + r919.mVal, yVal: r911.yVal + r912.yVal + r913.yVal + r914.yVal + r919.yVal };
 
-      const r911 = rowVal("9.1.1");
-      const r912 = rowVal("9.1.2");
-      const r913 = rowVal("9.1.3");
-      const r914 = rowVal("9.1.4");
-      const r919 = rowVal("9.1.9");
-      const totPendapatanLain = {
-        mVal: r911.mVal + r912.mVal + r913.mVal + r914.mVal + r919.mVal,
-        yVal: r911.yVal + r912.yVal + r913.yVal + r914.yVal + r919.yVal
-      };
+      const r921 = rowVal("9.2.1"); const r922 = rowVal("9.2.2"); const r923 = rowVal("9.2.3"); const r929 = rowVal("9.2.9");
+      const totBebanLain = { mVal: r921.mVal + r922.mVal + r923.mVal + r929.mVal, yVal: r921.yVal + r922.yVal + r923.yVal + r929.yVal };
 
-      const r921 = rowVal("9.2.1");
-      const r922 = rowVal("9.2.2");
-      const r923 = rowVal("9.2.3");
-      const r929 = rowVal("9.2.9");
-      const totBebanLain = {
-        mVal: r921.mVal + r922.mVal + r923.mVal + r929.mVal,
-        yVal: r921.yVal + r922.yVal + r923.yVal + r929.yVal
-      };
-
-      const totPendapatanBebanLain = {
-        mVal: totPendapatanLain.mVal - totBebanLain.mVal,
-        yVal: totPendapatanLain.yVal - totBebanLain.yVal
-      };
-
-      const shuSebelumPajak = {
-        mVal: shuOperasional.mVal + totPendapatanBebanLain.mVal,
-        yVal: shuOperasional.yVal + totPendapatanBebanLain.yVal
-      };
+      const totPendapatanBebanLain = { mVal: totPendapatanLain.mVal - totBebanLain.mVal, yVal: totPendapatanLain.yVal - totBebanLain.yVal };
+      const shuSebelumPajak = { mVal: shuOperasional.mVal + totPendapatanBebanLain.mVal, yVal: shuOperasional.yVal + totPendapatanBebanLain.yVal };
 
       const r931 = rowVal("9.3.1");
-      const shuSetelahPajak = {
-        mVal: shuSebelumPajak.mVal - r931.mVal,
-        yVal: shuSebelumPajak.yVal - r931.yVal
-      };
+      const shuSetelahPajak = { mVal: shuSebelumPajak.mVal - r931.mVal, yVal: shuSebelumPajak.yVal - r931.yVal };
 
       const rows = [
         { code: "4.0.0", no: 1, label: "PENDAPATAN OPERASIONAL", isHeader: true },
@@ -1659,27 +1310,17 @@
         { code: "", no: 54, label: "SISA HASIL USAHA (SHU) SETELAH PAJAK", ...shuSetelahPajak, isGrand: true }
       ];
 
-      return {
-        rows,
-        totPendapatan: totPendapatan.yVal,
-        totHPP: totHPP.yVal,
-        shuKotor: shuKotor.yVal,
-        totBebanOperasional: totBebanOperasional.yVal,
-        shuSetelahPajak: shuSetelahPajak.yVal
-      };
+      return { rows, totPendapatan: totPendapatan.yVal, totHPP: totHPP.yVal, shuKotor: shuKotor.yVal, totBebanOperasional: totBebanOperasional.yVal, shuSetelahPajak: shuSetelahPajak.yVal };
     }
 
     function computeLPE() {
       const ej = enrichJournals();
       const phu = computePHU(12);
       const codes = ["3.1.1", "3.1.2", "3.1.3", "3.2.1", "3.3.1", "3.4.1"];
-      const awal = {};
-      const mutasi = {};
-      const akhir = {};
+      const awal = {}; const mutasi = {}; const akhir = {};
 
       codes.forEach(c => {
-        let sa = 0;
-        let tot = 0;
+        let sa = 0; let tot = 0;
         ej.forEach(j => {
           if (j.lvl3 === c) {
             tot += j.jumlah;
@@ -1687,23 +1328,12 @@
           }
         });
         awal[c] = sa;
-        if (c === "3.4.1") {
-          mutasi[c] = (tot - sa) + phu.shuSetelahPajak;
-        } else {
-          mutasi[c] = tot - sa;
-        }
+        mutasi[c] = c === "3.4.1" ? (tot - sa) + phu.shuSetelahPajak : tot - sa;
         akhir[c] = awal[c] + mutasi[c];
       });
 
       const sumObj = (obj) => codes.reduce((acc, c) => acc + (obj[c] || 0), 0);
-      return {
-        awal,
-        mutasi,
-        akhir,
-        totAwal: sumObj(awal),
-        totMutasi: sumObj(mutasi),
-        totAkhir: sumObj(akhir)
-      };
+      return { awal, mutasi, akhir, totAwal: sumObj(awal), totMutasi: sumObj(mutasi), totAkhir: sumObj(akhir) };
     }
 
     function computeNeraca() {
@@ -1714,7 +1344,6 @@
       const sumTbLvl3 = (lvl3) => tb.filter(a => a.lvl3 === lvl3).reduce((s, a) => s + a.saldoAkhir, 0);
       const sumAwalLvl3 = (lvl3) => ej.filter(j => j.lvl3 === lvl3 && j.isSaldoAwal).reduce((s, j) => s + j.jumlah, 0);
 
-      // Aset Lancar
       const r111 = { end: sumTbLvl3("1.1.1"), start: sumAwalLvl3("1.1.1") };
       const r112 = { end: sumTbLvl3("1.1.2"), start: sumAwalLvl3("1.1.2") };
       const r113 = { end: -sumTbLvl3("1.1.3"), start: -sumAwalLvl3("1.1.3") };
@@ -1722,38 +1351,25 @@
       const r115 = { end: sumTbLvl3("1.1.5"), start: sumAwalLvl3("1.1.5") };
       const r118 = { end: sumTbLvl3("1.1.8"), start: sumAwalLvl3("1.1.8") };
       const r119 = { end: sumTbLvl3("1.1.9"), start: sumAwalLvl3("1.1.9") };
-      const totAsetLancar = {
-        end: r111.end + r112.end + r113.end + r114.end + r115.end + r118.end + r119.end,
-        start: r111.start + r112.start + r113.start + r114.start + r115.start + r118.start + r119.start
-      };
+      const totAsetLancar = { end: r111.end + r112.end + r113.end + r114.end + r115.end + r118.end + r119.end, start: r111.start + r112.start + r113.start + r114.start + r115.start + r118.start + r119.start };
 
-      // Investasi
       const r121 = { end: sumTbLvl3("1.2.1"), start: sumAwalLvl3("1.2.1") };
 
-      // Aset Tetap (1.3.5 di COA adalah Akumulasi Penyusutan)
       const r131 = { end: sumTbLvl3("1.3.1"), start: sumAwalLvl3("1.3.1") };
       const r132 = { end: sumTbLvl3("1.3.2"), start: sumAwalLvl3("1.3.2") };
       const r133 = { end: sumTbLvl3("1.3.3"), start: sumAwalLvl3("1.3.3") };
       const r134 = { end: sumTbLvl3("1.3.4"), start: sumAwalLvl3("1.3.4") };
       const r135 = { end: -Math.abs(sumTbLvl3("1.3.5")), start: -Math.abs(sumAwalLvl3("1.3.5")) };
       const r139 = { end: sumTbLvl3("1.3.9"), start: sumAwalLvl3("1.3.9") };
-      const totAsetTetap = {
-        end: r131.end + r132.end + r133.end + r134.end + r135.end + r139.end,
-        start: r131.start + r132.start + r133.start + r134.start + r135.start + r139.start
-      };
+      const totAsetTetap = { end: r131.end + r132.end + r133.end + r134.end + r135.end + r139.end, start: r131.start + r132.start + r133.start + r134.start + r135.start + r139.start };
 
-      // Aset Tak Berwujud & Lainnya
       const r141 = { end: sumTbLvl3("1.4.1"), start: sumAwalLvl3("1.4.1") };
       const r142 = { end: -Math.abs(sumTbLvl3("1.4.2")), start: -Math.abs(sumAwalLvl3("1.4.2")) };
       const totAsetTakBerwujud = { end: r141.end + r142.end, start: r141.start + r142.start };
       const r191 = { end: sumTbLvl3("1.5.1") + sumTbLvl3("1.9.1"), start: sumAwalLvl3("1.5.1") + sumAwalLvl3("1.9.1") };
 
-      const totalAset = {
-        end: totAsetLancar.end + r121.end + totAsetTetap.end + totAsetTakBerwujud.end + r191.end,
-        start: totAsetLancar.start + r121.start + totAsetTetap.start + totAsetTakBerwujud.start + r191.start
-      };
+      const totalAset = { end: totAsetLancar.end + r121.end + totAsetTetap.end + totAsetTakBerwujud.end + r191.end, start: totAsetLancar.start + r121.start + totAsetTetap.start + totAsetTakBerwujud.start + r191.start };
 
-      // Kewajiban Jangka Pendek
       const r211 = { end: sumTbLvl3("2.1.1"), start: sumAwalLvl3("2.1.1") };
       const r212 = { end: sumTbLvl3("2.1.2"), start: sumAwalLvl3("2.1.2") };
       const r213 = { end: sumTbLvl3("2.1.3"), start: sumAwalLvl3("2.1.3") };
@@ -1763,26 +1379,14 @@
       const r217 = { end: sumTbLvl3("2.1.7"), start: sumAwalLvl3("2.1.7") };
       const r218 = { end: sumTbLvl3("2.1.8"), start: sumAwalLvl3("2.1.8") };
       const r219 = { end: sumTbLvl3("2.1.9"), start: sumAwalLvl3("2.1.9") };
-      const totKewajibanPendek = {
-        end: r211.end + r212.end + r213.end + r214.end + r215.end + r216.end + r217.end + r218.end + r219.end,
-        start: r211.start + r212.start + r213.start + r214.start + r215.start + r216.start + r217.start + r218.start + r219.start
-      };
+      const totKewajibanPendek = { end: r211.end + r212.end + r213.end + r214.end + r215.end + r216.end + r217.end + r218.end + r219.end, start: r211.start + r212.start + r213.start + r214.start + r215.start + r216.start + r217.start + r218.start + r219.start };
 
-      // Kewajiban Jangka Panjang
       const r221 = { end: sumTbLvl3("2.2.1"), start: sumAwalLvl3("2.2.1") };
       const r222 = { end: sumTbLvl3("2.2.2"), start: sumAwalLvl3("2.2.2") };
       const r229 = { end: sumTbLvl3("2.2.9"), start: sumAwalLvl3("2.2.9") };
-      const totKewajibanPanjang = {
-        end: r221.end + r222.end + r229.end,
-        start: r221.start + r222.start + r229.start
-      };
+      const totKewajibanPanjang = { end: r221.end + r222.end + r229.end, start: r221.start + r222.start + r229.start };
+      const totalKewajiban = { end: totKewajibanPendek.end + totKewajibanPanjang.end, start: totKewajibanPendek.start + totKewajibanPanjang.start };
 
-      const totalKewajiban = {
-        end: totKewajibanPendek.end + totKewajibanPanjang.end,
-        start: totKewajibanPendek.start + totKewajibanPanjang.start
-      };
-
-      // Ekuitas dari LPE
       const e311 = { end: lpe.akhir["3.1.1"], start: lpe.awal["3.1.1"] };
       const e312 = { end: lpe.akhir["3.1.2"], start: lpe.awal["3.1.2"] };
       const e313 = { end: lpe.akhir["3.1.3"], start: lpe.awal["3.1.3"] };
@@ -1790,15 +1394,8 @@
       const e331 = { end: lpe.akhir["3.3.1"], start: lpe.awal["3.3.1"] };
       const e341 = { end: lpe.akhir["3.4.1"], start: lpe.awal["3.4.1"] };
 
-      const totalEkuitas = {
-        end: lpe.totAkhir,
-        start: lpe.totAwal
-      };
-
-      const totalPasiva = {
-        end: totalKewajiban.end + totalEkuitas.end,
-        start: totalKewajiban.start + totalEkuitas.start
-      };
+      const totalEkuitas = { end: lpe.totAkhir, start: lpe.totAwal };
+      const totalPasiva = { end: totalKewajiban.end + totalEkuitas.end, start: totalKewajiban.start + totalEkuitas.start };
 
       const rows = [
         { code: "1.0.0", no: 1, label: "ASET", isHeader: true },
@@ -1854,16 +1451,7 @@
         { code: "", no: 49, label: "TOTAL KEWAJIBAN DAN EKUITAS", ...totalPasiva, isGrand: true }
       ];
 
-      return {
-        rows,
-        kasAkhir: r111.end,
-        persediaanAkhir: r114.end,
-        totalAset: totalAset.end,
-        totalKewajiban: totalKewajiban.end,
-        totalEkuitas: totalEkuitas.end,
-        totalPasiva: totalPasiva.end,
-        selisih: Math.round(totalAset.end - totalPasiva.end)
-      };
+      return { rows, kasAkhir: r111.end, persediaanAkhir: r114.end, totalAset: totalAset.end, totalKewajiban: totalKewajiban.end, totalEkuitas: totalEkuitas.end, totalPasiva: totalPasiva.end, selisih: Math.round(totalAset.end - totalPasiva.end) };
     }
 
     function computeArusKas() {
@@ -1871,7 +1459,6 @@
       const neraca = computeNeraca();
       const sumCF = (compName) => ej.filter(j => (j.cashflow || "") === compName).reduce((s, j) => s + j.jumlah, 0);
 
-      // Aktivitas Operasi
       const opIn1 = sumCF("Penerimaan Kas dari Pelayanan kepada Anggota");
       const opIn2 = sumCF("Penerimaan Kas dari Non Anggota");
       const opIn3 = sumCF("Penerimaan Pendapatan Lain-lain");
@@ -1886,7 +1473,6 @@
       const totOpOut = opOut1 + opOut2 + opOut3 + opOut4 + opOut5 + opOut6;
       const netOp = totOpIn + totOpOut;
 
-      // Aktivitas Investasi
       const invIn1 = sumCF("Penjualan Aset Tetap");
       const invIn2 = sumCF("Penjualan Investasi");
       const totInvIn = invIn1 + invIn2;
@@ -1896,7 +1482,6 @@
       const totInvOut = invOut1 + invOut2;
       const netInv = totInvIn + totInvOut;
 
-      // Aktivitas Pendanaan
       const finIn1 = sumCF("Simpanan Anggota");
       const finIn2 = sumCF("Simpanan Lainnya");
       const finIn3 = sumCF("Hibah");
@@ -1954,7 +1539,7 @@
       return { rows, kenaikanKas, kasAwal, kasAkhir, selisihKas };
     }
 
-    // ==================== CHART.JS INSTANCE ====================
+    // CHART.JS INSTANCE
     let financeChartInstance = null;
 
     function renderDashboardChart(neraca, invTotalVal, phu) {
@@ -1962,13 +1547,7 @@
       if (!canvas || typeof Chart === "undefined") return;
       const ctx = canvas.getContext("2d");
 
-      const dataVals = [
-        neraca.totalAset,
-        invTotalVal,
-        phu.totPendapatan,
-        phu.totHPP,
-        neraca.totalEkuitas
-      ];
+      const dataVals = [neraca.totalAset, invTotalVal, phu.totPendapatan, phu.totHPP, neraca.totalEkuitas];
 
       if (financeChartInstance) {
         financeChartInstance.destroy();
@@ -1977,13 +1556,7 @@
       financeChartInstance = new Chart(ctx, {
         type: "bar",
         data: {
-          labels: [
-            "Total Aset",
-            "Nilai Persediaan",
-            "Pendapatan Usaha",
-            "HPP Barang",
-            "Total Ekuitas"
-          ],
+          labels: ["Total Aset", "Nilai Persediaan", "Pendapatan Usaha", "HPP Barang", "Total Ekuitas"],
           datasets: [{
             label: "Nilai (Rupiah)",
             data: dataVals,
@@ -2000,9 +1573,7 @@
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          plugins: {
-            legend: { display: false }
-          },
+          plugins: { legend: { display: false } },
           scales: {
             y: {
               ticks: {
@@ -2016,7 +1587,7 @@
       });
     }
 
-    // ==================== RENDER FUNCTIONS ====================
+    // RENDER FUNCTIONS
     function renderAll() {
       const invSummary = computeInventorySummary();
       const phu = computePHU(Number(document.getElementById("reportMonthSelect")?.value || 12));
@@ -2025,7 +1596,6 @@
       const arusKas = computeArusKas();
       const tb = computeTrialBalance();
 
-      // Update Header & Identity spans
       document.getElementById("headerCoopName").textContent = state.identity.coopName;
       document.getElementById("headerCoopSub").textContent = `${state.identity.city}, ${state.identity.province} • ${state.identity.unitUsaha}`;
       document.querySelectorAll(".coop-name-span").forEach(el => el.textContent = state.identity.coopName);
@@ -2041,7 +1611,7 @@
 
       document.getElementById("navStockBadge").textContent = invSummary.length;
 
-      // 1. Render Dashboard
+      // Dashboard
       const totalInvValue = invSummary.reduce((s, i) => s + i.finalVal, 0);
       const totalInvUnits = invSummary.reduce((s, i) => s + i.finalQty, 0);
       document.getElementById("kpiTotalAset").textContent = fmtRp(neraca.totalAset);
@@ -2055,9 +1625,7 @@
 
       const dashStockList = document.getElementById("dashStockList");
       dashStockList.innerHTML = invSummary.map(it => {
-        const badgeCls = it.status === "AMAN"
-          ? "bg-emerald-100 text-emerald-800"
-          : (it.status === "MENIPIS" ? "bg-amber-100 text-amber-800" : "bg-rose-100 text-rose-800");
+        const badgeCls = it.status === "AMAN" ? "bg-emerald-100 text-emerald-800" : (it.status === "MENIPIS" ? "bg-amber-100 text-amber-800" : "bg-rose-100 text-rose-800");
         return `
           <div class="p-2.5 rounded-lg border border-slate-200 bg-slate-50 flex items-center justify-between gap-2">
             <div>
@@ -2075,25 +1643,12 @@
 
       renderDashboardChart(neraca, totalInvValue, phu);
 
-      // 2. Render Persediaan Tab
       renderInventoryTab(invSummary, neraca.persediaanAkhir);
-
-      // 3. Render Jurnal Tab
       renderJournalTab();
-
-      // 4. Render Buku Besar & Neraca Saldo
       renderBukuBesarAndTB(tb);
-
-      // 5. Render Laporan Keuangan
       renderFinancialReports(phu, lpe, neraca, arusKas);
-
-      // 6. Render COA Tab
       renderCoaTab(tb);
-
-      // 7. Render Identity Form
       renderIdentityForm();
-
-      // Populate Quick Trans & Card Select Dropdowns
       populateItemDropdowns(invSummary);
     }
 
@@ -2142,6 +1697,7 @@
             <td class="py-2.5 px-3 text-center whitespace-nowrap space-x-1">
               <button type="button" data-action="card" data-code="${it.code}" class="inv-action-btn px-2 py-1 rounded bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold">Kartu Stok</button>
               <button type="button" data-action="edit" data-code="${it.code}" class="inv-action-btn px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold">Edit</button>
+              <button type="button" data-action="delete" data-code="${it.code}" class="inv-action-btn px-2 py-1 rounded bg-rose-50 hover:bg-rose-100 text-rose-700 font-semibold">Hapus</button>
             </td>
           </tr>
         `;
@@ -2161,7 +1717,6 @@
         </tr>
       `;
 
-      // Render Mutation History
       const cardFilter = document.getElementById("filterCardItemSelect")?.value || "ALL";
       const allMutations = [];
       invSummary.forEach(it => {
@@ -2256,7 +1811,6 @@
     }
 
     function renderBukuBesarAndTB(tb) {
-      // Populate GL select if empty or changed
       const glSelect = document.getElementById("glAccountSelect");
       const currentVal = glSelect.value || "1.1.1.02 Kas di Bank BRI";
       glSelect.innerHTML = state.coa.map(a => `<option value="${a.full}">${a.full}</option>`).join("");
@@ -2268,9 +1822,7 @@
       document.getElementById("glAccountMeta").textContent = `Kode Akun: ${selectedAcc.code} • Nama Akun: ${selectedAcc.name} • Saldo Normal: ${selectedAcc.normal}`;
 
       const ej = enrichJournals().filter(j => j.account === selectedAcc.full || j.code === selectedAcc.code);
-      let running = 0;
-      let totD = 0;
-      let totK = 0;
+      let running = 0; let totD = 0; let totK = 0;
 
       const glBody = document.getElementById("glTableBody");
       if (ej.length === 0) {
@@ -2303,7 +1855,6 @@
         </tr>
       `;
 
-      // Render Trial Balance (Neraca Saldo)
       const hideZero = document.getElementById("tbHideZeroToggle")?.checked;
       const tbRows = hideZero ? tb.filter(r => r.mutDebit !== 0 || r.mutKredit !== 0) : tb;
 
@@ -2347,17 +1898,10 @@
       document.getElementById("phuColYtdHeader").textContent = `s.d. Akhir ${mName} ${year}`;
       document.getElementById("phuSubtitlePeriod").textContent = `Untuk Periode yang Berakhir sampai dengan Akhir ${mName} ${year} (dalam Rupiah)`;
 
-      // 1. PHU Table
       document.getElementById("phuTableBody").innerHTML = phu.rows.map(r => {
-        if (r.isHeader) {
-          return `<tr class="bg-slate-200/80 font-extrabold text-slate-900"><td class="py-2 px-3">${r.code}</td><td class="py-2 px-3 text-center">${r.no}</td><td colspan="3" class="py-2 px-3">${r.label}</td></tr>`;
-        }
-        if (r.isSubHeader) {
-          return `<tr class="bg-slate-50 font-bold text-slate-700"><td class="py-2 px-3">${r.code}</td><td class="py-2 px-3 text-center">${r.no}</td><td colspan="3" class="py-2 px-3">${r.label}</td></tr>`;
-        }
-        const rowCls = r.isGrand
-          ? "bg-red-50 font-extrabold text-slate-900 border-t-2 border-red-200"
-          : (r.isTotal ? "bg-slate-100 font-bold text-slate-800" : "hover:bg-slate-50");
+        if (r.isHeader) return `<tr class="bg-slate-200/80 font-extrabold text-slate-900"><td class="py-2 px-3">${r.code}</td><td class="py-2 px-3 text-center">${r.no}</td><td colspan="3" class="py-2 px-3">${r.label}</td></tr>`;
+        if (r.isSubHeader) return `<tr class="bg-slate-50 font-bold text-slate-700"><td class="py-2 px-3">${r.code}</td><td class="py-2 px-3 text-center">${r.no}</td><td colspan="3" class="py-2 px-3">${r.label}</td></tr>`;
+        const rowCls = r.isGrand ? "bg-red-50 font-extrabold text-slate-900 border-t-2 border-red-200" : (r.isTotal ? "bg-slate-100 font-bold text-slate-800" : "hover:bg-slate-50");
         return `
           <tr class="${rowCls}">
             <td class="py-2 px-3 font-mono text-slate-600">${r.code || ''}</td>
@@ -2369,7 +1913,6 @@
         `;
       }).join("");
 
-      // 2. LPE Table
       const lpeBody = document.getElementById("lpeTableBody");
       const lpeRowHtml = (no, title, obj, tot, isBold) => `
         <tr class="${isBold ? 'bg-slate-100 font-extrabold text-slate-900 border-t-2 border-slate-300' : 'hover:bg-slate-50'}">
@@ -2389,7 +1932,6 @@
         lpeRowHtml(2, "Penambahan (Pengurangan) Periode Berjalan", lpe.mutasi, lpe.totMutasi, false) +
         lpeRowHtml(3, "SALDO AKHIR EKUITAS", lpe.akhir, lpe.totAkhir, true);
 
-      // 3. Neraca Table
       const neracaAlert = document.getElementById("neracaBalanceAlert");
       if (neraca.selisih === 0) {
         neracaAlert.textContent = "✓ STATUS NERACA: BALANCE (Selisih Rp 0)";
@@ -2400,15 +1942,9 @@
       }
 
       document.getElementById("neracaTableBody").innerHTML = neraca.rows.map(r => {
-        if (r.isHeader) {
-          return `<tr class="bg-slate-200/80 font-extrabold text-slate-900"><td class="py-2 px-3">${r.code}</td><td class="py-2 px-3 text-center">${r.no}</td><td colspan="3" class="py-2 px-3">${r.label}</td></tr>`;
-        }
-        if (r.isSubHeader) {
-          return `<tr class="bg-slate-50 font-bold text-slate-700"><td class="py-2 px-3">${r.code}</td><td class="py-2 px-3 text-center">${r.no}</td><td colspan="3" class="py-2 px-3">${r.label}</td></tr>`;
-        }
-        const rowCls = r.isGrand
-          ? "bg-red-50 font-extrabold text-slate-900 border-t-2 border-red-200"
-          : (r.isTotal ? "bg-slate-100 font-bold text-slate-800" : "hover:bg-slate-50");
+        if (r.isHeader) return `<tr class="bg-slate-200/80 font-extrabold text-slate-900"><td class="py-2 px-3">${r.code}</td><td class="py-2 px-3 text-center">${r.no}</td><td colspan="3" class="py-2 px-3">${r.label}</td></tr>`;
+        if (r.isSubHeader) return `<tr class="bg-slate-50 font-bold text-slate-700"><td class="py-2 px-3">${r.code}</td><td class="py-2 px-3 text-center">${r.no}</td><td colspan="3" class="py-2 px-3">${r.label}</td></tr>`;
+        const rowCls = r.isGrand ? "bg-red-50 font-extrabold text-slate-900 border-t-2 border-red-200" : (r.isTotal ? "bg-slate-100 font-bold text-slate-800" : "hover:bg-slate-50");
         return `
           <tr class="${rowCls}">
             <td class="py-2 px-3 font-mono text-slate-600">${r.code || ''}</td>
@@ -2420,26 +1956,19 @@
         `;
       }).join("");
 
-      // 4. Laporan Arus Kas
       const cfBadge = document.getElementById("arusKasCheckBadge");
       if (arusKas.selisihKas === 0) {
         cfBadge.textContent = "✓ Rekonsiliasi Kas Neraca: Sesuai (Selisih Rp 0)";
         cfBadge.className = "px-4 py-2 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold";
       } else {
-        cfBadge.textContent = `⚠ Selisih terhadap Kas Neraca: ${fmtRp(arusKas.selisihKas)} (Pastikan Komponen Arus Kas terisi pada jurnal Kas/Bank)`;
+        cfBadge.textContent = `⚠ Selisih terhadap Kas Neraca: ${fmtRp(arusKas.selisihKas)}`;
         cfBadge.className = "px-4 py-2 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold";
       }
 
       document.getElementById("arusKasTableBody").innerHTML = arusKas.rows.map(r => {
-        if (r.isHeader) {
-          return `<tr class="bg-slate-200/80 font-extrabold text-slate-900"><td class="py-2 px-3 text-center">${r.no}</td><td colspan="2" class="py-2 px-3">${r.label}</td></tr>`;
-        }
-        if (r.isSubHeader) {
-          return `<tr class="bg-slate-50 font-bold text-slate-700"><td class="py-2 px-3 text-center">${r.no}</td><td colspan="2" class="py-2 px-3">${r.label}</td></tr>`;
-        }
-        const rowCls = r.isGrand
-          ? "bg-red-50 font-extrabold text-slate-900 border-t-2 border-red-200"
-          : (r.isTotal ? "bg-slate-100 font-bold text-slate-800" : "hover:bg-slate-50");
+        if (r.isHeader) return `<tr class="bg-slate-200/80 font-extrabold text-slate-900"><td class="py-2 px-3 text-center">${r.no}</td><td colspan="2" class="py-2 px-3">${r.label}</td></tr>`;
+        if (r.isSubHeader) return `<tr class="bg-slate-50 font-bold text-slate-700"><td class="py-2 px-3 text-center">${r.no}</td><td colspan="2" class="py-2 px-3">${r.label}</td></tr>`;
+        const rowCls = r.isGrand ? "bg-red-50 font-extrabold text-slate-900 border-t-2 border-red-200" : (r.isTotal ? "bg-slate-100 font-bold text-slate-800" : "hover:bg-slate-50");
         return `
           <tr class="${rowCls}">
             <td class="py-2 px-3 text-center text-slate-500">${r.no}</td>
@@ -2449,7 +1978,6 @@
         `;
       }).join("");
 
-      // Update Signatures
       for (let i = 1; i <= 4; i++) {
         const locEl = document.getElementById(`sigLocationDate${i}`);
         const nameEl = document.getElementById(`sigChairmanName${i}`);
@@ -2460,6 +1988,7 @@
       }
     }
 
+    // RENDER COA TAB WITH EDIT & DELETE ACTIONS
     function renderCoaTab(tb) {
       const s = (document.getElementById("searchCoaInput")?.value || "").toLowerCase();
       const g = document.getElementById("filterCoaGroup")?.value || "ALL";
@@ -2480,8 +2009,50 @@
           </td>
           <td class="py-2 px-3 text-center font-mono text-slate-500">${a.lvl3}</td>
           <td class="py-2 px-3 text-right font-semibold">${fmtRp(a.saldoAkhir)}</td>
+          <td class="py-2 px-3 text-center whitespace-nowrap space-x-1">
+            <button type="button" onclick="editCoa('${a.code}')" class="px-2 py-1 rounded bg-amber-50 hover:bg-amber-100 text-amber-700 font-semibold">Edit</button>
+            <button type="button" onclick="deleteCoa('${a.code}')" class="px-2 py-1 rounded bg-rose-50 hover:bg-rose-100 text-rose-700 font-semibold">Hapus</button>
+          </td>
         </tr>
       `).join("");
+    }
+
+    // EDIT & DELETE COA FUNCTIONS
+    function editCoa(code) {
+      const acc = state.coa.find(a => a.code === code);
+      if (!acc) return;
+
+      const newName = prompt("Ubah Nama Akun:", acc.name);
+      if (newName && newName.trim() !== "") {
+        const oldFull = acc.full;
+        acc.name = newName.trim();
+        acc.full = `${acc.code} ${acc.name}`;
+
+        state.journals.forEach(j => {
+          if (j.account === oldFull) j.account = acc.full;
+        });
+
+        saveState();
+        initJournalFormLines();
+        renderAll();
+        showToast(`Akun ${code} berhasil diperbarui.`);
+      }
+    }
+
+    function deleteCoa(code) {
+      const isUsed = state.journals.some(j => j.account && j.account.startsWith(code));
+      if (isUsed) {
+        showToast(`Gagal: Akun ${code} sedang digunakan dalam jurnal harian!`, "error");
+        return;
+      }
+
+      if (confirm(`Apakah Anda yakin ingin menghapus akun ${code}?`)) {
+        state.coa = state.coa.filter(a => a.code !== code);
+        saveState();
+        initJournalFormLines();
+        renderAll();
+        showToast(`Akun ${code} berhasil dihapus.`);
+      }
     }
 
     function renderIdentityForm() {
@@ -2519,44 +2090,23 @@
       updateQuickTransPreview();
     }
 
-    // ==================== DYNAMIC JOURNAL FORM LINES ====================
+    // JOURNAL LINE MANAGEMENT
     function createJournalLineRow(defaultAcc = "1.1.1.02 Kas di Bank BRI", defaultDebit = 0, defaultKredit = 0) {
       const tr = document.createElement("tr");
-      const accOptions = state.coa.map(a =>
-        `<option value="${a.full}" ${a.full === defaultAcc ? 'selected' : ''}>${a.full}</option>`
-      ).join("");
-      const itemOptions = `<option value="">-- Tanpa Barang --</option>` + state.items.map(it =>
-        `<option value="${it.name}">${it.name} (${it.unit})</option>`
-      ).join("");
-      const cfOptions = CASHFLOW_COMPONENTS.map(c =>
-        `<option value="${c}">${c || '-- Pilih Jika Kas/Bank --'}</option>`
-      ).join("");
+      const accOptions = state.coa.map(a => `<option value="${a.full}" ${a.full === defaultAcc ? 'selected' : ''}>${a.full}</option>`).join("");
+      const itemOptions = `<option value="">-- Tanpa Barang --</option>` + state.items.map(it => `<option value="${it.name}">${it.name} (${it.unit})</option>`).join("");
+      const cfOptions = CASHFLOW_COMPONENTS.map(c => `<option value="${c}">${c || '-- Pilih Jika Kas/Bank --'}</option>`).join("");
 
       tr.innerHTML = `
-        <td class="p-2">
-          <select class="jline-account w-full border border-slate-300 rounded px-2 py-1.5 bg-white text-xs">${accOptions}</select>
-        </td>
-        <td class="p-2">
-          <select class="jline-item w-full border border-slate-300 rounded px-2 py-1.5 bg-white text-xs">${itemOptions}</select>
-        </td>
-        <td class="p-2">
-          <input type="number" min="0" step="1" class="jline-qty w-full border border-slate-300 rounded px-2 py-1.5 text-right text-xs" value="0" />
-        </td>
-        <td class="p-2">
-          <input type="number" min="0" step="100" class="jline-debit w-full border border-slate-300 rounded px-2 py-1.5 text-right text-xs font-semibold" value="${defaultDebit}" />
-        </td>
-        <td class="p-2">
-          <input type="number" min="0" step="100" class="jline-kredit w-full border border-slate-300 rounded px-2 py-1.5 text-right text-xs font-semibold" value="${defaultKredit}" />
-        </td>
-        <td class="p-2">
-          <select class="jline-cf w-full border border-slate-300 rounded px-2 py-1.5 bg-white text-xs">${cfOptions}</select>
-        </td>
-        <td class="p-2 text-center">
-          <button type="button" class="jline-remove text-rose-600 hover:text-rose-800 font-bold px-2">✕</button>
-        </td>
+        <td class="p-2"><select class="jline-account w-full border border-slate-300 rounded px-2 py-1.5 bg-white text-xs">${accOptions}</select></td>
+        <td class="p-2"><select class="jline-item w-full border border-slate-300 rounded px-2 py-1.5 bg-white text-xs">${itemOptions}</select></td>
+        <td class="p-2"><input type="number" min="0" step="1" class="jline-qty w-full border border-slate-300 rounded px-2 py-1.5 text-right text-xs" value="0" /></td>
+        <td class="p-2"><input type="number" min="0" step="100" class="jline-debit w-full border border-slate-300 rounded px-2 py-1.5 text-right text-xs font-semibold" value="${defaultDebit}" /></td>
+        <td class="p-2"><input type="number" min="0" step="100" class="jline-kredit w-full border border-slate-300 rounded px-2 py-1.5 text-right text-xs font-semibold" value="${defaultKredit}" /></td>
+        <td class="p-2"><select class="jline-cf w-full border border-slate-300 rounded px-2 py-1.5 bg-white text-xs">${cfOptions}</select></td>
+        <td class="p-2 text-center"><button type="button" class="jline-remove text-rose-600 hover:text-rose-800 font-bold px-2">✕</button></td>
       `;
 
-      // Auto-calculate value if item & qty chosen
       const itemSel = tr.querySelector(".jline-item");
       const qtyInp = tr.querySelector(".jline-qty");
       const debInp = tr.querySelector(".jline-debit");
@@ -2569,7 +2119,6 @@
         if (itName && q > 0) {
           const itObj = state.items.find(i => i.name === itName);
           if (itObj) {
-            // Jika akun persediaan atau belum ada nilai, isi otomatis dengan q * cost
             const calcVal = q * (Number(itObj.cost) || 0);
             if ((Number(debInp.value) || 0) === 0 && (Number(kreInp.value) || 0) === 0) {
               debInp.value = calcVal;
@@ -2610,8 +2159,7 @@
     }
 
     function updateJournalFormTotals() {
-      let d = 0;
-      let k = 0;
+      let d = 0; let k = 0;
       document.querySelectorAll("#journalFormLines tr").forEach(tr => {
         d += Number(tr.querySelector(".jline-debit")?.value || 0);
         k += Number(tr.querySelector(".jline-kredit")?.value || 0);
@@ -2632,7 +2180,6 @@
       }
     }
 
-    // ==================== QUICK TRANSACTION MODAL LOGIC ====================
     function updateQuickTransPreview() {
       const type = document.getElementById("qtType")?.value || "IN_BUY";
       const code = document.getElementById("qtItemCode")?.value;
@@ -2644,8 +2191,7 @@
       const item = invSummary.find(i => i.code === code) || invSummary[0];
       if (!item) return;
 
-      document.getElementById("qtItemStockHint").textContent =
-        `Stok Saat Ini: ${fmtNum(item.finalQty)} ${item.unit} • HPP Satuan: ${fmtRp(item.cost)} • Harga Jual: ${fmtRp(item.price)}`;
+      document.getElementById("qtItemStockHint").textContent = `Stok Saat Ini: ${fmtNum(item.finalQty)} ${item.unit} • HPP Satuan: ${fmtRp(item.cost)} • Harga Jual: ${fmtRp(item.price)}`;
 
       const unitPrice = Number(priceInput?.value || 0);
       const totalTrans = qty * unitPrice;
@@ -2661,13 +2207,11 @@
           <div>• <strong>Jurnal Kredit:</strong> ${payAcc} sebesar <strong>${fmtRp(totalTrans)}</strong></div>
         `;
       } else if (type === "OUT_SALE_MEMBER" || type === "OUT_SALE_NON") {
-        const revAcc = type === "OUT_SALE_MEMBER"
-          ? "4.1.1.01 Pendapatan Penjualan Barang Dagangan (Anggota)"
-          : "4.2.1.01 Pendapatan Penjualan Barang Dagangan (Non-Anggota)";
+        const revAcc = type === "OUT_SALE_MEMBER" ? "4.1.1.01 Pendapatan Penjualan Barang Dagangan (Anggota)" : "4.2.1.01 Pendapatan Penjualan Barang Dagangan (Non-Anggota)";
         previewEl.innerHTML = `
-          <div>• <strong>Stok Gudang:</strong> ${item.name} berkurang <strong>-${fmtNum(qty)} ${item.unit}</strong> (Sisa: ${fmtNum(item.finalQty - qty)} ${item.unit})</div>
+          <div>• <strong>Stok Gudang:</strong> ${item.name} berkurang <strong>-${fmtNum(qty)} ${item.unit}</strong></div>
           <div>• <strong>Jurnal Penjualan:</strong> Debit ${payAcc} <strong>${fmtRp(totalTrans)}</strong> / Kredit ${revAcc} <strong>${fmtRp(totalTrans)}</strong></div>
-          <div>• <strong>Jurnal HPP Otomatis:</strong> Debit 5.1.1.01 HPP Barang Dagangan <strong>${fmtRp(totalHPP)}</strong> / Kredit ${item.account} <strong>${fmtRp(totalHPP)}</strong></div>
+          <div>• <strong>Jurnal HPP:</strong> Debit HPP Barang Dagangan <strong>${fmtRp(totalHPP)}</strong> / Kredit ${item.account} <strong>${fmtRp(totalHPP)}</strong></div>
         `;
       } else {
         previewEl.innerHTML = `
@@ -2686,44 +2230,22 @@
       document.getElementById("scModalSub").textContent = `Akun: ${it.account} • Satuan: ${it.unit} • HPP Satuan: ${fmtRp(it.cost)}`;
 
       document.getElementById("scSummaryBoxes").innerHTML = `
-        <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
-          <span class="text-[11px] text-slate-500">Stok Awal</span>
-          <p class="text-sm font-extrabold text-slate-800">${fmtNum(it.initQty)} ${it.unit}</p>
-        </div>
-        <div class="p-3 rounded-lg bg-emerald-50 border border-emerald-200">
-          <span class="text-[11px] text-emerald-700">Total Masuk (+)</span>
-          <p class="text-sm font-extrabold text-emerald-800">+${fmtNum(it.qtyIn)} ${it.unit}</p>
-        </div>
-        <div class="p-3 rounded-lg bg-rose-50 border border-rose-200">
-          <span class="text-[11px] text-rose-700">Total Keluar (-)</span>
-          <p class="text-sm font-extrabold text-rose-800">-${fmtNum(it.qtyOut)} ${it.unit}</p>
-        </div>
-        <div class="p-3 rounded-lg bg-slate-900 text-white">
-          <span class="text-[11px] text-slate-300">Stok Akhir Tersedia</span>
-          <p class="text-sm font-extrabold">${fmtNum(it.finalQty)} ${it.unit} (${fmtRp(it.finalVal)})</p>
-        </div>
+        <div class="p-3 rounded-lg bg-slate-50 border border-slate-200"><span class="text-[11px] text-slate-500">Stok Awal</span><p class="text-sm font-extrabold text-slate-800">${fmtNum(it.initQty)} ${it.unit}</p></div>
+        <div class="p-3 rounded-lg bg-emerald-50 border border-emerald-200"><span class="text-[11px] text-emerald-700">Total Masuk (+)</span><p class="text-sm font-extrabold text-emerald-800">+${fmtNum(it.qtyIn)} ${it.unit}</p></div>
+        <div class="p-3 rounded-lg bg-rose-50 border border-rose-200"><span class="text-[11px] text-rose-700">Total Keluar (-)</span><p class="text-sm font-extrabold text-rose-800">-${fmtNum(it.qtyOut)} ${it.unit}</p></div>
+        <div class="p-3 rounded-lg bg-slate-900 text-white"><span class="text-[11px] text-slate-300">Stok Akhir Tersedia</span><p class="text-sm font-extrabold">${fmtNum(it.finalQty)} ${it.unit} (${fmtRp(it.finalVal)})</p></div>
       `;
 
       let runningQty = Number(it.initQty) || 0;
       const rowsHtml = [
-        `<tr class="bg-slate-50 font-semibold">
-          <td class="py-2 px-3">${state.identity.startDate}</td>
-          <td class="py-2 px-3 font-mono">SALDO-AWAL</td>
-          <td class="py-2 px-3">Stok Awal Tahun Buku</td>
-          <td class="py-2 px-3 text-right">-</td>
-          <td class="py-2 px-3 text-right">-</td>
-          <td class="py-2 px-3 text-right font-bold">${fmtNum(runningQty)} ${it.unit}</td>
-          <td class="py-2 px-3 text-right font-bold">${fmtRp(runningQty * it.cost)}</td>
-        </tr>`
+        `<tr class="bg-slate-50 font-semibold"><td class="py-2 px-3">${state.identity.startDate}</td><td class="py-2 px-3 font-mono">SALDO-AWAL</td><td class="py-2 px-3">Stok Awal Tahun Buku</td><td class="py-2 px-3 text-right">-</td><td class="py-2 px-3 text-right">-</td><td class="py-2 px-3 text-right font-bold">${fmtNum(runningQty)} ${it.unit}</td><td class="py-2 px-3 text-right font-bold">${fmtRp(runningQty * it.cost)}</td></tr>`
       ];
 
       it.mutations.forEach(m => {
         runningQty += (m.qtyIn - m.qtyOut);
         rowsHtml.push(`
           <tr class="hover:bg-slate-50">
-            <td class="py-2 px-3">${m.date}</td>
-            <td class="py-2 px-3 font-mono">${m.docNo}</td>
-            <td class="py-2 px-3">${m.desc || '-'}</td>
+            <td class="py-2 px-3">${m.date}</td><td class="py-2 px-3 font-mono">${m.docNo}</td><td class="py-2 px-3">${m.desc || '-'}</td>
             <td class="py-2 px-3 text-right text-emerald-700 font-semibold">${m.qtyIn > 0 ? '+' + fmtNum(m.qtyIn) : '-'}</td>
             <td class="py-2 px-3 text-right text-rose-700 font-semibold">${m.qtyOut > 0 ? '-' + fmtNum(m.qtyOut) : '-'}</td>
             <td class="py-2 px-3 text-right font-extrabold">${fmtNum(runningQty)} ${it.unit}</td>
@@ -2738,10 +2260,10 @@
       modal.classList.add("flex");
     }
 
-    // ==================== EXPORT TO EXCEL (.XLSX) ====================
+    // EXPORT TO EXCEL
     function exportToExcelWorkbook() {
       if (typeof XLSX === "undefined") {
-        showToast("Pustaka ekspor Excel sedang dimuat, silakan coba sesaat lagi.", "error");
+        showToast("Pustaka ekspor Excel sedang dimuat...", "error");
         return;
       }
       const wb = XLSX.utils.book_new();
@@ -2752,87 +2274,31 @@
       const arusKas = computeArusKas();
       const tb = computeTrialBalance();
 
-      // 1. Sheet Persediaan
       const wsInvData = [
-        ["REKAPITULASI & CEK BARANG PERSEDIAAN OTOMATIS — " + state.identity.coopName],
-        ["Kode Barang", "Nama Barang Persediaan", "Akun Persediaan", "Satuan", "Stok Awal", "Total Masuk (+)", "Total Keluar (-)", "Stok Akhir", "HPP Satuan (Rp)", "Harga Jual (Rp)", "Total Nilai Persediaan (Rp)", "Status Stok"]
+        ["REKAPITULASI BARANG PERSEDIAAN — " + state.identity.coopName],
+        ["Kode", "Nama Barang", "Akun Persediaan", "Satuan", "Stok Awal", "Masuk (+)", "Keluar (-)", "Stok Akhir", "HPP Satuan (Rp)", "Harga Jual (Rp)", "Nilai Persediaan (Rp)", "Status"]
       ];
-      invSummary.forEach(it => {
-        wsInvData.push([it.code, it.name, it.account, it.unit, it.initQty, it.qtyIn, it.qtyOut, it.finalQty, it.cost, it.price, it.finalVal, it.status]);
-      });
+      invSummary.forEach(it => { wsInvData.push([it.code, it.name, it.account, it.unit, it.initQty, it.qtyIn, it.qtyOut, it.finalQty, it.cost, it.price, it.finalVal, it.status]); });
       XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(wsInvData), "Persediaan");
 
-      // 2. Sheet Jurnal
       const wsJurnalData = [
         ["BUKU JURNAL HARIAN — " + state.identity.coopName],
-        ["Tanggal", "Nomor Bukti", "Kode dan Nama Akun", "Nama Barang Persediaan", "Qty", "Sisi Kiri (Debit)", "Sisi Kanan (Kredit)", "Keterangan Transaksi", "Komponen Laporan Arus Kas"]
+        ["Tanggal", "Nomor Bukti", "Akun", "Barang", "Qty", "Debit", "Kredit", "Keterangan", "Arus Kas"]
       ];
-      state.journals.forEach(j => {
-        wsJurnalData.push([j.date, j.docNo, j.account, j.itemName || "", j.qty || "", j.debit || 0, j.kredit || 0, j.desc || "", j.cashflow || ""]);
-      });
+      state.journals.forEach(j => { wsJurnalData.push([j.date, j.docNo, j.account, j.itemName || "", j.qty || "", j.debit || 0, j.kredit || 0, j.desc || "", j.cashflow || ""]); });
       XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(wsJurnalData), "Jurnal");
 
-      // 3. Sheet Neraca Saldo
-      const wsTbData = [
-        ["NERACA SALDO — " + state.identity.coopName],
-        ["Saldo Normal", "Kode dan Nama Akun", "Mutasi Debit", "Mutasi Kredit", "Saldo Debit", "Saldo Kredit", "Saldo Akhir"]
-      ];
-      tb.forEach(r => {
-        wsTbData.push([r.normal, r.full, r.mutDebit, r.mutKredit, r.saldoDebit, r.saldoKredit, r.saldoAkhir]);
-      });
-      XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(wsTbData), "Neraca Saldo");
-
-      // 4. Sheet Hasil Usaha
-      const wsPhuData = [
-        ["PERHITUNGAN HASIL USAHA — " + state.identity.coopName],
-        ["Kode", "No", "Uraian", "Bulan Terpilih (Rp)", "s.d. Akhir Tahun (Rp)"]
-      ];
-      phu.rows.forEach(r => {
-        wsPhuData.push([r.code || "", r.no || "", r.label, r.mVal !== undefined ? r.mVal : "", r.yVal !== undefined ? r.yVal : ""]);
-      });
-      XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(wsPhuData), "Hasil Usaha");
-
-      // 5. Sheet LPE
-      const wsLpeData = [
-        ["LAPORAN PERUBAHAN EKUITAS — " + state.identity.coopName],
-        ["No", "Uraian", "Simpanan Pokok (3.1.1)", "Simpanan Wajib (3.1.2)", "Simpanan Lainnya (3.1.3)", "Hibah (3.2.1)", "Cadangan (3.3.1)", "SHU Belum Dibagikan (3.4.1)", "Total Ekuitas"],
-        [1, "SALDO AWAL", lpe.awal["3.1.1"], lpe.awal["3.1.2"], lpe.awal["3.1.3"], lpe.awal["3.2.1"], lpe.awal["3.3.1"], lpe.awal["3.4.1"], lpe.totAwal],
-        [2, "Penambahan (Pengurangan)", lpe.mutasi["3.1.1"], lpe.mutasi["3.1.2"], lpe.mutasi["3.1.3"], lpe.mutasi["3.2.1"], lpe.mutasi["3.3.1"], lpe.mutasi["3.4.1"], lpe.totMutasi],
-        [3, "SALDO AKHIR", lpe.akhir["3.1.1"], lpe.akhir["3.1.2"], lpe.akhir["3.1.3"], lpe.akhir["3.2.1"], lpe.akhir["3.3.1"], lpe.akhir["3.4.1"], lpe.totAkhir]
-      ];
-      XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(wsLpeData), "LPE");
-
-      // 6. Sheet Neraca
-      const wsNeracaData = [
-        ["LAPORAN POSISI KEUANGAN (NERACA) — " + state.identity.coopName],
-        ["Kode", "No", "Uraian", "Akhir Tahun (Rp)", "Saldo Awal (Rp)"]
-      ];
-      neraca.rows.forEach(r => {
-        wsNeracaData.push([r.code || "", r.no || "", r.label, r.end !== undefined ? r.end : "", r.start !== undefined ? r.start : ""]);
-      });
-      XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(wsNeracaData), "Neraca");
-
-      // 7. Sheet Arus Kas
-      const wsCfData = [
-        ["LAPORAN ARUS KAS — " + state.identity.coopName],
-        ["No", "Uraian", "Nilai (Rp)"]
-      ];
-      arusKas.rows.forEach(r => {
-        wsCfData.push([r.no || "", r.label, r.val !== undefined ? r.val : ""]);
-      });
-      XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(wsCfData), "Laporan Arus Kas");
-
       XLSX.writeFile(wb, "Aplikasi_Akuntansi_KDMP_Merah_Putih.xlsx");
-      showToast("File Excel (.xlsx) lengkap berhasil diunduh!");
+      showToast("File Excel (.xlsx) berhasil diunduh!");
     }
 
-    // ==================== EVENT LISTENERS INITIALIZATION ====================
+    // EVENT LISTENERS & DOM CONTENT LOADED
     window.addEventListener("DOMContentLoaded", () => {
       loadState();
       initJournalFormLines();
       renderAll();
 
-      // Main Navigation Tabs
+      // Navigation
       document.querySelectorAll(".tab-btn").forEach(btn => {
         btn.addEventListener("click", () => {
           const target = btn.getAttribute("data-tab");
@@ -2844,26 +2310,26 @@
         });
       });
 
-      // Shortcut buttons on Dashboard
-      document.getElementById("btnGoToPersediaan").addEventListener("click", () => {
-        document.querySelector('.tab-btn[data-tab="persediaan"]')?.click();
-      });
-      document.getElementById("btnGoToJurnal").addEventListener("click", () => {
-        document.querySelector('.tab-btn[data-tab="jurnal"]')?.click();
-      });
+      document.getElementById("btnGoToPersediaan").addEventListener("click", () => document.querySelector('.tab-btn[data-tab="persediaan"]')?.click());
+      document.getElementById("btnGoToJurnal").addEventListener("click", () => document.querySelector('.tab-btn[data-tab="jurnal"]')?.click());
+
+      // RESET TO ZERO FUNCTION
       document.getElementById("btnResetDemoData").addEventListener("click", () => {
-        state = {
-          identity: JSON.parse(JSON.stringify(INITIAL_IDENTITY)),
-          coa: JSON.parse(JSON.stringify(INITIAL_COA)),
-          items: JSON.parse(JSON.stringify(INITIAL_ITEMS)),
-          journals: JSON.parse(JSON.stringify(INITIAL_JOURNALS))
-        };
-        saveState();
-        renderAll();
-        showToast("Data berhasil dikembalikan ke data awal KDMP Banyurojo.");
+        if (confirm("Apakah Anda yakin ingin mereset seluruh data? Semua transaksi jurnal akan dihapus dan nominal laporan menjadi Rp 0.")) {
+          state = {
+            identity: JSON.parse(JSON.stringify(INITIAL_IDENTITY)),
+            coa: JSON.parse(JSON.stringify(INITIAL_COA)),
+            items: JSON.parse(JSON.stringify(INITIAL_ITEMS)).map(i => ({ ...i, initQty: 0 })),
+            journals: []
+          };
+          saveState();
+          initJournalFormLines();
+          renderAll();
+          showToast("Data berhasil di-reset! Seluruh transaksi & nominal sekarang Rp 0.");
+        }
       });
 
-      // Subtabs Buku Besar & Neraca Saldo
+      // Subtabs
       document.querySelectorAll(".bb-subtab").forEach(btn => {
         btn.addEventListener("click", () => {
           const t = btn.getAttribute("data-bbtab");
@@ -2874,7 +2340,6 @@
         });
       });
 
-      // Subtabs Laporan Keuangan
       document.querySelectorAll(".rep-subtab").forEach(btn => {
         btn.addEventListener("click", () => {
           const t = btn.getAttribute("data-reptab");
@@ -2886,7 +2351,7 @@
         });
       });
 
-      // Filters & Toggles
+      // Filters
       document.getElementById("searchInventoryInput").addEventListener("input", renderAll);
       document.getElementById("filterInventoryCat").addEventListener("change", renderAll);
       document.getElementById("filterInventoryStatus").addEventListener("change", renderAll);
@@ -2899,16 +2364,16 @@
       document.getElementById("searchCoaInput").addEventListener("input", () => renderCoaTab(computeTrialBalance()));
       document.getElementById("filterCoaGroup").addEventListener("change", () => renderCoaTab(computeTrialBalance()));
 
-      // Export & Print
       document.getElementById("btnExportExcel").addEventListener("click", exportToExcelWorkbook);
       document.getElementById("btnPrintReport").addEventListener("click", () => window.print());
 
-      // Inventory Table Delegation (Kartu Stok & Edit)
+      // Inventory Table Actions (Card, Edit, Delete)
       document.getElementById("inventoryTableBody").addEventListener("click", (e) => {
         const btn = e.target.closest(".inv-action-btn");
         if (!btn) return;
         const code = btn.getAttribute("data-code");
         const act = btn.getAttribute("data-action");
+
         if (act === "card") {
           openStockCardModal(code);
         } else if (act === "edit") {
@@ -2928,17 +2393,33 @@
           const m = document.getElementById("modalItemMaster");
           m.classList.remove("hidden");
           m.classList.add("flex");
+        } else if (act === "delete") {
+          const item = state.items.find(i => i.code === code);
+          if (!item) return;
+
+          const isUsed = state.journals.some(j => j.itemName === item.name);
+          if (isUsed) {
+            showToast(`Gagal: Barang "${item.name}" pernah ditransaksikan di jurnal harian!`, "error");
+            return;
+          }
+
+          if (confirm(`Apakah Anda yakin ingin menghapus barang "${item.name}" (${code})?`)) {
+            state.items = state.items.filter(i => i.code !== code);
+            saveState();
+            initJournalFormLines();
+            renderAll();
+            showToast(`Barang "${item.name}" berhasil dihapus.`);
+          }
         }
       });
 
-      // Close Stock Card Modal
       document.getElementById("btnCloseStockCard").addEventListener("click", () => {
         const m = document.getElementById("modalStockCard");
         m.classList.add("hidden");
         m.classList.remove("flex");
       });
 
-      // Add/Edit Item Master Modal
+      // Item Master Modal
       function openAddItemModal() {
         document.getElementById("imEditMode").value = "ADD";
         document.getElementById("modalItemTitle").textContent = "Tambah Master Barang Persediaan Baru";
@@ -2995,7 +2476,7 @@
             return;
           }
           state.items.push({ code, name, unit, account, initQty, minQty, cost, price });
-          showToast(`Barang baru "${name}" berhasil ditambahkan ke Master Persediaan.`);
+          showToast(`Barang baru "${name}" berhasil ditambahkan.`);
         }
         saveState();
         closeItemModal();
@@ -3003,7 +2484,7 @@
         renderAll();
       });
 
-      // Quick Transaction Modal (Barang Masuk / Keluar Otomatis)
+      // Quick Transaction Modal
       function openQuickTransModal() {
         const m = document.getElementById("modalQuickTrans");
         m.classList.remove("hidden");
@@ -3075,123 +2556,30 @@
         const ts = Date.now();
 
         if (type === "IN_BUY") {
-          // Update cost if different
           const masterIdx = state.items.findIndex(i => i.code === code);
           if (masterIdx > -1 && unitPrice > 0) {
             state.items[masterIdx].cost = unitPrice;
           }
           state.journals.push(
-            {
-              id: `J-${ts}-1`,
-              date,
-              docNo,
-              account: item.account,
-              itemName: item.name,
-              qty,
-              debit: totalTrans,
-              kredit: 0,
-              desc,
-              cashflow: ""
-            },
-            {
-              id: `J-${ts}-2`,
-              date,
-              docNo,
-              account: payAcc,
-              itemName: "",
-              qty: 0,
-              debit: 0,
-              kredit: totalTrans,
-              desc,
-              cashflow: isCash ? "Pembelian Harga Pokok Barang" : ""
-            }
+            { id: `J-${ts}-1`, date, docNo, account: item.account, itemName: item.name, qty, debit: totalTrans, kredit: 0, desc, cashflow: "" },
+            { id: `J-${ts}-2`, date, docNo, account: payAcc, itemName: "", qty: 0, debit: 0, kredit: totalTrans, desc, cashflow: isCash ? "Pembelian Harga Pokok Barang" : "" }
           );
-          showToast(`Barang Masuk (+${qty} ${item.unit} ${item.name}) & Jurnal Pembelian berhasil disimpan!`);
+          showToast(`Barang Masuk (+${qty} ${item.unit} ${item.name}) & Jurnal Pembelian disimpan!`);
         } else if (type === "OUT_SALE_MEMBER" || type === "OUT_SALE_NON") {
-          const revAcc = type === "OUT_SALE_MEMBER"
-            ? "4.1.1.01 Pendapatan Penjualan Barang Dagangan (Anggota)"
-            : "4.2.1.01 Pendapatan Penjualan Barang Dagangan (Non-Anggota)";
-          const cfTag = isCash
-            ? (type === "OUT_SALE_MEMBER" ? "Penerimaan Kas dari Pelayanan kepada Anggota" : "Penerimaan Kas dari Non Anggota")
-            : "";
+          const revAcc = type === "OUT_SALE_MEMBER" ? "4.1.1.01 Pendapatan Penjualan Barang Dagangan (Anggota)" : "4.2.1.01 Pendapatan Penjualan Barang Dagangan (Non-Anggota)";
+          const cfTag = isCash ? (type === "OUT_SALE_MEMBER" ? "Penerimaan Kas dari Pelayanan kepada Anggota" : "Penerimaan Kas dari Non Anggota") : "";
 
           state.journals.push(
-            {
-              id: `J-${ts}-1`,
-              date,
-              docNo,
-              account: payAcc,
-              itemName: "",
-              qty: 0,
-              debit: totalTrans,
-              kredit: 0,
-              desc,
-              cashflow: cfTag
-            },
-            {
-              id: `J-${ts}-2`,
-              date,
-              docNo,
-              account: revAcc,
-              itemName: "",
-              qty: 0,
-              debit: 0,
-              kredit: totalTrans,
-              desc,
-              cashflow: ""
-            },
-            {
-              id: `J-${ts}-3`,
-              date,
-              docNo,
-              account: "5.1.1.01 Harga Pokok Penjualan Barang Dagangan",
-              itemName: "",
-              qty: 0,
-              debit: totalHPP,
-              kredit: 0,
-              desc: `HPP ${desc}`,
-              cashflow: ""
-            },
-            {
-              id: `J-${ts}-4`,
-              date,
-              docNo,
-              account: item.account,
-              itemName: item.name,
-              qty,
-              debit: 0,
-              kredit: totalHPP,
-              desc: `Pengeluaran Stok ${qty} ${item.unit} ${item.name}`,
-              cashflow: ""
-            }
+            { id: `J-${ts}-1`, date, docNo, account: payAcc, itemName: "", qty: 0, debit: totalTrans, kredit: 0, desc, cashflow: cfTag },
+            { id: `J-${ts}-2`, date, docNo, account: revAcc, itemName: "", qty: 0, debit: 0, kredit: totalTrans, desc, cashflow: "" },
+            { id: `J-${ts}-3`, date, docNo, account: "5.1.1.01 Harga Pokok Penjualan Barang Dagangan", itemName: "", qty: 0, debit: totalHPP, kredit: 0, desc: `HPP ${desc}`, cashflow: "" },
+            { id: `J-${ts}-4`, date, docNo, account: item.account, itemName: item.name, qty, debit: 0, kredit: totalHPP, desc: `Pengeluaran Stok ${qty} ${item.unit} ${item.name}`, cashflow: "" }
           );
-          showToast(`Penjualan (-${qty} ${item.unit} ${item.name}) & Jurnal HPP otomatis berhasil disimpan!`);
+          showToast(`Penjualan (-${qty} ${item.unit} ${item.name}) & Jurnal HPP disimpan!`);
         } else {
           state.journals.push(
-            {
-              id: `J-${ts}-1`,
-              date,
-              docNo,
-              account: "6.1.2.01 Beban ATK",
-              itemName: "",
-              qty: 0,
-              debit: totalHPP,
-              kredit: 0,
-              desc,
-              cashflow: ""
-            },
-            {
-              id: `J-${ts}-2`,
-              date,
-              docNo,
-              account: item.account,
-              itemName: item.name,
-              qty,
-              debit: 0,
-              kredit: totalHPP,
-              desc,
-              cashflow: ""
-            }
+            { id: `J-${ts}-1`, date, docNo, account: "6.1.2.01 Beban ATK", itemName: "", qty: 0, debit: totalHPP, kredit: 0, desc, cashflow: "" },
+            { id: `J-${ts}-2`, date, docNo, account: item.account, itemName: item.name, qty, debit: 0, kredit: totalHPP, desc, cashflow: "" }
           );
           showToast(`Pemakaian Barang (-${qty} ${item.unit} ${item.name}) berhasil dijurnal!`);
         }
@@ -3201,7 +2589,6 @@
         renderAll();
       });
 
-      // Manual Journal Form
       document.getElementById("btnAddJournalLine").addEventListener("click", () => {
         document.getElementById("journalFormLines").appendChild(createJournalLineRow("1.1.1.01 Kas Tunai", 0, 0));
       });
@@ -3214,8 +2601,7 @@
         const desc = document.getElementById("jDesc").value.trim();
 
         const lines = [];
-        let totD = 0;
-        let totK = 0;
+        let totD = 0; let totK = 0;
 
         document.querySelectorAll("#journalFormLines tr").forEach((tr, idx) => {
           const account = tr.querySelector(".jline-account").value;
@@ -3228,18 +2614,7 @@
           if (debit > 0 || kredit > 0) {
             totD += debit;
             totK += kredit;
-            lines.push({
-              id: `J-${Date.now()}-${idx}`,
-              date,
-              docNo,
-              account,
-              itemName,
-              qty,
-              debit,
-              kredit,
-              desc,
-              cashflow
-            });
+            lines.push({ id: `J-${Date.now()}-${idx}`, date, docNo, account, itemName, qty, debit, kredit, desc, cashflow });
           }
         });
 
@@ -3248,7 +2623,7 @@
           return;
         }
         if (Math.round(totD - totK) !== 0) {
-          showToast(`Jurnal belum seimbang! Selisih Debit & Kredit: ${fmtRp(totD - totK)}`, "error");
+          showToast(`Jurnal belum seimbang! Selisih: ${fmtRp(totD - totK)}`, "error");
           return;
         }
 
@@ -3257,10 +2632,9 @@
         initJournalFormLines();
         document.getElementById("jDesc").value = "";
         renderAll();
-        showToast("Jurnal harian berhasil disimpan dan stok persediaan telah disesuaikan otomatis!");
+        showToast("Jurnal harian berhasil disimpan!");
       });
 
-      // Delete Journal Line
       document.getElementById("journalTableBody").addEventListener("click", (e) => {
         const btn = e.target.closest(".del-journal-btn");
         if (!btn) return;
@@ -3268,7 +2642,7 @@
         state.journals = state.journals.filter(j => j.id !== jid);
         saveState();
         renderAll();
-        showToast("Baris jurnal berhasil dihapus & stok/laporan diperbarui.");
+        showToast("Baris jurnal berhasil dihapus.");
       });
 
       // Add COA Form
@@ -3279,7 +2653,7 @@
         const normal = document.getElementById("newCoaNormal").value;
         const full = `${code} ${name}`;
         if (state.coa.some(a => a.code === code || a.full.toLowerCase() === full.toLowerCase())) {
-          showToast("Kode akun tersebut sudah ada di COA.", "error");
+          showToast("Kode akun tersebut sudah ada.", "error");
           return;
         }
         state.coa.push({
@@ -3320,7 +2694,7 @@
         };
         saveState();
         renderAll();
-        showToast("Identitas Koperasi Desa Merah Putih berhasil disimpan!");
+        showToast("Identitas Koperasi berhasil disimpan!");
       });
     });
   </script>
